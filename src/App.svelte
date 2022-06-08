@@ -35,8 +35,8 @@
 			for (let c = 0; c < columns; c++) {
 				const ind = totalCards - (r * rows + c);
 				cardArray[r * rows + c].move(
-					startX + r * 60,
-					startY + c * 60,
+					startX + r * (cardWidth + gap),
+					startY + c * (cardHeight + gap),
 					ind / 20
 				);
 			}
@@ -107,8 +107,8 @@
 			let row = Math.floor(i/columns);
 			const index = indexArray[i];
 			cardArray[index].move(
-					startX + row * 60,
-					startY + col * 60
+					startX + row * (cardWidth + gap),
+					startY + col * (cardHeight + gap)
 				);
 		}
 	}

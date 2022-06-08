@@ -6426,15 +6426,15 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(div, file, 117, 1, 2362);
-    			add_location(g, file, 119, 2, 2495);
+    			add_location(div, file, 117, 1, 2424);
+    			add_location(g, file, 119, 2, 2557);
     			attr_dev(svg_1, "width", "" + (/*w*/ ctx[5] + "px"));
     			attr_dev(svg_1, "height", "" + (/*h*/ ctx[6] + "px"));
     			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[5] + " " + /*h*/ ctx[6]);
     			attr_dev(svg_1, "class", "svelte-hufhdn");
-    			add_location(svg_1, file, 118, 1, 2420);
+    			add_location(svg_1, file, 118, 1, 2482);
     			attr_dev(main, "class", "svelte-hufhdn");
-    			add_location(main, file, 116, 0, 2354);
+    			add_location(main, file, 116, 0, 2416);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6563,7 +6563,7 @@ var app = (function () {
     		for (let r = 0; r < rows; r++) {
     			for (let c = 0; c < columns; c++) {
     				const ind = totalCards - (r * rows + c);
-    				cardArray[r * rows + c].move(startX + r * 60, startY + c * 60, ind / 20);
+    				cardArray[r * rows + c].move(startX + r * (cardWidth + gap), startY + c * (cardHeight + gap), ind / 20);
     			}
     		}
     	}
@@ -6638,7 +6638,7 @@ var app = (function () {
     			let col = i % columns;
     			let row = Math.floor(i / columns);
     			const index = indexArray[i];
-    			cardArray[index].move(startX + row * 60, startY + col * 60);
+    			cardArray[index].move(startX + row * (cardWidth + gap), startY + col * (cardHeight + gap));
     		}
     	}
 
