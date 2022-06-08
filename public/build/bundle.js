@@ -6318,16 +6318,16 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[28] = list[i];
-    	child_ctx[29] = list;
-    	child_ctx[30] = i;
+    	child_ctx[29] = list[i];
+    	child_ctx[30] = list;
+    	child_ctx[31] = i;
     	return child_ctx;
     }
 
-    // (99:2) {#each symbols as symbol, index}
+    // (121:2) {#each symbols as symbol, index}
     function create_each_block(ctx) {
     	let card;
-    	let index = /*index*/ ctx[30];
+    	let index = /*index*/ ctx[31];
     	let current;
     	const assign_card = () => /*card_binding*/ ctx[13](card, index);
     	const unassign_card = () => /*card_binding*/ ctx[13](null, index);
@@ -6335,8 +6335,8 @@ var app = (function () {
     	let card_props = {
     		x: "35",
     		y: /*h*/ ctx[6] / 2,
-    		index: /*index*/ ctx[30],
-    		symbol: /*symbol*/ ctx[28]
+    		index: /*index*/ ctx[31],
+    		symbol: /*symbol*/ ctx[29]
     	};
 
     	card = new Card({ props: card_props, $$inline: true });
@@ -6352,9 +6352,9 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (index !== /*index*/ ctx[30]) {
+    			if (index !== /*index*/ ctx[31]) {
     				unassign_card();
-    				index = /*index*/ ctx[30];
+    				index = /*index*/ ctx[31];
     				assign_card();
     			}
 
@@ -6380,7 +6380,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(99:2) {#each symbols as symbol, index}",
+    		source: "(121:2) {#each symbols as symbol, index}",
     		ctx
     	});
 
@@ -6426,15 +6426,15 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(div, file, 95, 1, 1793);
-    			add_location(g, file, 97, 2, 1926);
+    			add_location(div, file, 117, 1, 2362);
+    			add_location(g, file, 119, 2, 2495);
     			attr_dev(svg_1, "width", "" + (/*w*/ ctx[5] + "px"));
     			attr_dev(svg_1, "height", "" + (/*h*/ ctx[6] + "px"));
     			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[5] + " " + /*h*/ ctx[6]);
     			attr_dev(svg_1, "class", "svelte-hufhdn");
-    			add_location(svg_1, file, 96, 1, 1851);
+    			add_location(svg_1, file, 118, 1, 2420);
     			attr_dev(main, "class", "svelte-hufhdn");
-    			add_location(main, file, 94, 0, 1785);
+    			add_location(main, file, 116, 0, 2354);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6458,11 +6458,11 @@ var app = (function () {
     			/*svg_1_binding*/ ctx[14](svg_1);
     			current = true;
     		},
-    		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*matches*/ 8) set_data_dev(t1, /*matches*/ ctx[3]);
-    			if (!current || dirty & /*noMatches*/ 16) set_data_dev(t3, /*noMatches*/ ctx[4]);
+    		p: function update(ctx, dirty) {
+    			if (!current || dirty[0] & /*matches*/ 8) set_data_dev(t1, /*matches*/ ctx[3]);
+    			if (!current || dirty[0] & /*noMatches*/ 16) set_data_dev(t3, /*noMatches*/ ctx[4]);
 
-    			if (dirty & /*h, symbols, cardArray, handleCardClick*/ 452) {
+    			if (dirty[0] & /*h, symbols, cardArray, handleCardClick*/ 452) {
     				each_value = /*symbols*/ ctx[7];
     				validate_each_argument(each_value);
     				let i;
@@ -6553,6 +6553,7 @@ var app = (function () {
     	function init() {
     		console.log("cards:", cardArray.length);
     		deal();
+    		setTimeout(shuffle, 5000);
     	}
 
     	function deal() {
@@ -6561,8 +6562,8 @@ var app = (function () {
 
     		for (let r = 0; r < rows; r++) {
     			for (let c = 0; c < columns; c++) {
-    				const ind = r * rows + c;
-    				cardArray[r * rows + c].move(startX + r * 60, startY + c * 60, ind / 10);
+    				const ind = totalCards - (r * rows + c);
+    				cardArray[r * rows + c].move(startX + r * 60, startY + c * 60, ind / 20);
     			}
     		}
     	}
@@ -6619,6 +6620,26 @@ var app = (function () {
     			},
     			2000
     		);
+    	}
+
+    	function shuffle() {
+    		let indexArray = [];
+
+    		for (let i = 0; i < totalCards; i++) {
+    			indexArray.push(i);
+    		}
+
+    		indexArray = indexArray.sort((a, b) => 0.5 - Math.random());
+    		console.log('indexArray:', indexArray.toString());
+    		const startX = (w - rowWidth) / 2;
+    		const startY = (h - columnHeight) / 2;
+
+    		for (let i = 0; i < totalCards; i++) {
+    			let col = i % columns;
+    			let row = Math.floor(i / columns);
+    			const index = indexArray[i];
+    			cardArray[index].move(startX + row * 60, startY + col * 60);
+    		}
     	}
 
     	const writable_props = ['rows', 'columns'];
@@ -6679,7 +6700,8 @@ var app = (function () {
     		checkIfMatching,
     		isMatching,
     		collectWinnings,
-    		putEmBack
+    		putEmBack,
+    		shuffle
     	});
 
     	$$self.$inject_state = $$props => {
@@ -6729,7 +6751,7 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { rows: 9, columns: 10, init: 11 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { rows: 9, columns: 10, init: 11 }, null, [-1, -1]);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,

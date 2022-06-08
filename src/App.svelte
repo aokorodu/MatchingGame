@@ -25,6 +25,7 @@
 	export function init() {
 		console.log("cards:", cardArray.length);
 		deal();
+		setTimeout(shuffle, 5000);
 	}
 
 	function deal() {
@@ -32,11 +33,11 @@
 		const startY = (h - columnHeight) / 2;
 		for (let r = 0; r < rows; r++) {
 			for (let c = 0; c < columns; c++) {
-				const ind = r * rows + c;
+				const ind = totalCards - (r * rows + c);
 				cardArray[r * rows + c].move(
 					startX + r * 60,
 					startY + c * 60,
-					ind / 10
+					ind / 20
 				);
 			}
 		}
@@ -89,6 +90,27 @@
 
 			selectedCards = [];
 		}, 2000);
+	}
+
+	function shuffle(){
+		let indexArray = [];
+		for(let i = 0; i < totalCards; i++){
+			indexArray.push(i);
+		}
+		indexArray = indexArray.sort((a, b) => 0.5 - Math.random());
+		console.log('indexArray:', indexArray.toString())
+
+		const startX = (w - rowWidth) / 2;
+		const startY = (h - columnHeight) / 2;
+		for(let i = 0; i < totalCards; i++){
+			let col = i % columns;
+			let row = Math.floor(i/columns);
+			const index = indexArray[i];
+			cardArray[index].move(
+					startX + row * 60,
+					startY + col * 60
+				);
+		}
 	}
 </script>
 
