@@ -5954,7 +5954,7 @@ var app = (function () {
     			attr_dev(rect, "fill", "grey");
     			attr_dev(rect, "fill-opacity", "1");
     			attr_dev(rect, "stroke", "black");
-    			add_location(rect, file$1, 82, 4, 1385);
+    			add_location(rect, file$1, 82, 4, 1386);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, rect, anchor);
@@ -6004,7 +6004,7 @@ var app = (function () {
     			attr_dev(rect, "height", /*h*/ ctx[5]);
     			attr_dev(rect, "fill", "white");
     			attr_dev(rect, "stroke", "black");
-    			add_location(rect, file$1, 65, 2, 1113);
+    			add_location(rect, file$1, 65, 2, 1114);
     			attr_dev(text_1, "x", "0");
     			attr_dev(text_1, "y", "0");
     			attr_dev(text_1, "font-size", "25");
@@ -6012,9 +6012,9 @@ var app = (function () {
     			attr_dev(text_1, "dominant-baseline", "middle");
     			attr_dev(text_1, "text-anchor", "middle");
     			attr_dev(text_1, "class", "svelte-ka21ck");
-    			add_location(text_1, file$1, 73, 2, 1221);
+    			add_location(text_1, file$1, 73, 2, 1222);
     			attr_dev(g, "transform", g_transform_value = "translate(" + (parseInt(/*position*/ ctx[2].x) + /*w*/ ctx[4] / 2) + ", " + parseInt(/*position*/ ctx[2].y + /*h*/ ctx[5] / 2) + ")");
-    			add_location(g, file$1, 61, 0, 1001);
+    			add_location(g, file$1, 61, 0, 1002);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6085,7 +6085,7 @@ var app = (function () {
 
     	function move(newX, newY, delay = 0) {
     		gsapWithCSS.to(position, {
-    			duration: 1,
+    			duration: .5,
     			x: newX,
     			y: newY,
     			delay,
@@ -6318,30 +6318,30 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[29] = list[i];
-    	child_ctx[30] = list;
-    	child_ctx[31] = i;
+    	child_ctx[32] = list[i];
+    	child_ctx[33] = list;
+    	child_ctx[34] = i;
     	return child_ctx;
     }
 
-    // (121:2) {#each symbols as symbol, index}
+    // (133:2) {#each symbols as symbol, index}
     function create_each_block(ctx) {
     	let card;
-    	let index = /*index*/ ctx[31];
+    	let index = /*index*/ ctx[34];
     	let current;
-    	const assign_card = () => /*card_binding*/ ctx[13](card, index);
-    	const unassign_card = () => /*card_binding*/ ctx[13](null, index);
+    	const assign_card = () => /*card_binding*/ ctx[14](card, index);
+    	const unassign_card = () => /*card_binding*/ ctx[14](null, index);
 
     	let card_props = {
     		x: "35",
-    		y: /*h*/ ctx[6] / 2,
-    		index: /*index*/ ctx[31],
-    		symbol: /*symbol*/ ctx[29]
+    		y: /*h*/ ctx[7] / 2,
+    		index: /*index*/ ctx[34],
+    		symbol: /*symbol*/ ctx[32]
     	};
 
     	card = new Card({ props: card_props, $$inline: true });
     	assign_card();
-    	card.$on("cardClick", /*handleCardClick*/ ctx[8]);
+    	card.$on("cardClick", /*handleCardClick*/ ctx[9]);
 
     	const block = {
     		c: function create() {
@@ -6352,9 +6352,9 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (index !== /*index*/ ctx[31]) {
+    			if (index !== /*index*/ ctx[34]) {
     				unassign_card();
-    				index = /*index*/ ctx[31];
+    				index = /*index*/ ctx[34];
     				assign_card();
     			}
 
@@ -6380,7 +6380,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(121:2) {#each symbols as symbol, index}",
+    		source: "(133:2) {#each symbols as symbol, index}",
     		ctx
     	});
 
@@ -6389,7 +6389,7 @@ var app = (function () {
 
     function create_fragment(ctx) {
     	let main;
-    	let div;
+    	let div0;
     	let t0;
     	let t1;
     	let t2;
@@ -6397,8 +6397,12 @@ var app = (function () {
     	let t4;
     	let svg_1;
     	let g;
+    	let t5;
+    	let div1;
     	let current;
-    	let each_value = /*symbols*/ ctx[7];
+    	let mounted;
+    	let dispose;
+    	let each_value = /*symbols*/ ctx[8];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -6413,11 +6417,11 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			div = element("div");
+    			div0 = element("div");
     			t0 = text("matches: ");
-    			t1 = text(/*matches*/ ctx[3]);
+    			t1 = text(/*matches*/ ctx[4]);
     			t2 = text(" wrong guesses: ");
-    			t3 = text(/*noMatches*/ ctx[4]);
+    			t3 = text(/*noMatches*/ ctx[5]);
     			t4 = space();
     			svg_1 = svg_element("svg");
     			g = svg_element("g");
@@ -6426,44 +6430,56 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(div, file, 117, 1, 2424);
-    			add_location(g, file, 119, 2, 2557);
-    			attr_dev(svg_1, "width", "" + (/*w*/ ctx[5] + "px"));
-    			attr_dev(svg_1, "height", "" + (/*h*/ ctx[6] + "px"));
-    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[5] + " " + /*h*/ ctx[6]);
-    			attr_dev(svg_1, "class", "svelte-hufhdn");
-    			add_location(svg_1, file, 118, 1, 2482);
-    			attr_dev(main, "class", "svelte-hufhdn");
-    			add_location(main, file, 116, 0, 2416);
+    			t5 = space();
+    			div1 = element("div");
+    			div1.textContent = "START";
+    			add_location(div0, file, 129, 1, 2592);
+    			add_location(g, file, 131, 2, 2725);
+    			attr_dev(svg_1, "width", "" + (/*w*/ ctx[6] + "px"));
+    			attr_dev(svg_1, "height", "" + (/*h*/ ctx[7] + "px"));
+    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[6] + " " + /*h*/ ctx[7]);
+    			attr_dev(svg_1, "class", "svelte-zktg06");
+    			add_location(svg_1, file, 130, 1, 2650);
+    			attr_dev(div1, "class", "deal-button svelte-zktg06");
+    			add_location(div1, file, 144, 1, 2942);
+    			attr_dev(main, "class", "svelte-zktg06");
+    			add_location(main, file, 128, 0, 2584);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, div);
-    			append_dev(div, t0);
-    			append_dev(div, t1);
-    			append_dev(div, t2);
-    			append_dev(div, t3);
+    			append_dev(main, div0);
+    			append_dev(div0, t0);
+    			append_dev(div0, t1);
+    			append_dev(div0, t2);
+    			append_dev(div0, t3);
     			append_dev(main, t4);
     			append_dev(main, svg_1);
     			append_dev(svg_1, g);
-    			/*g_binding*/ ctx[12](g);
+    			/*g_binding*/ ctx[13](g);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(svg_1, null);
     			}
 
-    			/*svg_1_binding*/ ctx[14](svg_1);
+    			/*svg_1_binding*/ ctx[15](svg_1);
+    			append_dev(main, t5);
+    			append_dev(main, div1);
     			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div1, "click", /*handleStartClick*/ ctx[0], false, false, false);
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, dirty) {
-    			if (!current || dirty[0] & /*matches*/ 8) set_data_dev(t1, /*matches*/ ctx[3]);
-    			if (!current || dirty[0] & /*noMatches*/ 16) set_data_dev(t3, /*noMatches*/ ctx[4]);
+    			if (!current || dirty[0] & /*matches*/ 16) set_data_dev(t1, /*matches*/ ctx[4]);
+    			if (!current || dirty[0] & /*noMatches*/ 32) set_data_dev(t3, /*noMatches*/ ctx[5]);
 
-    			if (dirty[0] & /*h, symbols, cardArray, handleCardClick*/ 452) {
-    				each_value = /*symbols*/ ctx[7];
+    			if (dirty[0] & /*h, symbols, cardArray, handleCardClick*/ 904) {
+    				each_value = /*symbols*/ ctx[8];
     				validate_each_argument(each_value);
     				let i;
 
@@ -6510,9 +6526,11 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			/*g_binding*/ ctx[12](null);
+    			/*g_binding*/ ctx[13](null);
     			destroy_each(each_blocks, detaching);
-    			/*svg_1_binding*/ ctx[14](null);
+    			/*svg_1_binding*/ ctx[15](null);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -6549,9 +6567,15 @@ var app = (function () {
     	let selectedCards = [];
     	let matches = 0;
     	let noMatches = 0;
+    	let started = false;
 
     	function init() {
     		console.log("cards:", cardArray.length);
+    	}
+
+    	function handleStartClick() {
+    		if (started) return;
+    		started = true;
     		deal();
     		setTimeout(shuffle, 5000);
     	}
@@ -6570,11 +6594,14 @@ var app = (function () {
 
     	function handleCardClick(e) {
     		if (selectedCards.length >= 2) return;
-    		const index = e.detail.index;
-    		const newCard = cardArray[index];
+    		selectCard(e.detail.index);
+    		checkIfMatching();
+    	}
+
+    	function selectCard(cardIndex) {
+    		const newCard = cardArray[cardIndex];
     		newCard.show();
     		selectedCards.push(newCard);
-    		checkIfMatching();
     	}
 
     	function checkIfMatching() {
@@ -6598,7 +6625,7 @@ var app = (function () {
     	}
 
     	function collectWinnings() {
-    		$$invalidate(3, matches++, matches);
+    		$$invalidate(4, matches++, matches);
 
     		selectedCards.forEach(card => {
     			card.lock();
@@ -6608,7 +6635,7 @@ var app = (function () {
     	}
 
     	function putEmBack() {
-    		$$invalidate(4, noMatches++, noMatches);
+    		$$invalidate(5, noMatches++, noMatches);
 
     		setTimeout(
     			() => {
@@ -6630,7 +6657,7 @@ var app = (function () {
     		}
 
     		indexArray = indexArray.sort((a, b) => 0.5 - Math.random());
-    		console.log('indexArray:', indexArray.toString());
+    		console.log("indexArray:", indexArray.toString());
     		const startX = (w - rowWidth) / 2;
     		const startY = (h - columnHeight) / 2;
 
@@ -6638,7 +6665,7 @@ var app = (function () {
     			let col = i % columns;
     			let row = Math.floor(i / columns);
     			const index = indexArray[i];
-    			cardArray[index].move(startX + row * (cardWidth + gap), startY + col * (cardHeight + gap));
+    			cardArray[index].move(startX + row * (cardWidth + gap), startY + col * (cardHeight + gap), Math.random());
     		}
     	}
 
@@ -6651,27 +6678,27 @@ var app = (function () {
     	function g_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			cardHolder = $$value;
-    			$$invalidate(1, cardHolder);
+    			$$invalidate(2, cardHolder);
     		});
     	}
 
     	function card_binding($$value, index) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			cardArray[index] = $$value;
-    			$$invalidate(2, cardArray);
+    			$$invalidate(3, cardArray);
     		});
     	}
 
     	function svg_1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			svg = $$value;
-    			$$invalidate(0, svg);
+    			$$invalidate(1, svg);
     		});
     	}
 
     	$$self.$$set = $$props => {
-    		if ('rows' in $$props) $$invalidate(9, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(10, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(10, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(11, columns = $$props.columns);
     	};
 
     	$$self.$capture_state = () => ({
@@ -6694,9 +6721,12 @@ var app = (function () {
     		selectedCards,
     		matches,
     		noMatches,
+    		started,
     		init,
+    		handleStartClick,
     		deal,
     		handleCardClick,
+    		selectCard,
     		checkIfMatching,
     		isMatching,
     		collectWinnings,
@@ -6705,24 +6735,25 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('svg' in $$props) $$invalidate(0, svg = $$props.svg);
-    		if ('cardHolder' in $$props) $$invalidate(1, cardHolder = $$props.cardHolder);
-    		if ('w' in $$props) $$invalidate(5, w = $$props.w);
-    		if ('h' in $$props) $$invalidate(6, h = $$props.h);
+    		if ('svg' in $$props) $$invalidate(1, svg = $$props.svg);
+    		if ('cardHolder' in $$props) $$invalidate(2, cardHolder = $$props.cardHolder);
+    		if ('w' in $$props) $$invalidate(6, w = $$props.w);
+    		if ('h' in $$props) $$invalidate(7, h = $$props.h);
     		if ('cardWidth' in $$props) cardWidth = $$props.cardWidth;
     		if ('cardHeight' in $$props) cardHeight = $$props.cardHeight;
     		if ('gap' in $$props) gap = $$props.gap;
-    		if ('rows' in $$props) $$invalidate(9, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(10, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(10, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(11, columns = $$props.columns);
     		if ('rowWidth' in $$props) rowWidth = $$props.rowWidth;
     		if ('columnHeight' in $$props) columnHeight = $$props.columnHeight;
     		if ('totalCards' in $$props) totalCards = $$props.totalCards;
     		if ('str' in $$props) str = $$props.str;
-    		if ('symbols' in $$props) $$invalidate(7, symbols = $$props.symbols);
-    		if ('cardArray' in $$props) $$invalidate(2, cardArray = $$props.cardArray);
+    		if ('symbols' in $$props) $$invalidate(8, symbols = $$props.symbols);
+    		if ('cardArray' in $$props) $$invalidate(3, cardArray = $$props.cardArray);
     		if ('selectedCards' in $$props) selectedCards = $$props.selectedCards;
-    		if ('matches' in $$props) $$invalidate(3, matches = $$props.matches);
-    		if ('noMatches' in $$props) $$invalidate(4, noMatches = $$props.noMatches);
+    		if ('matches' in $$props) $$invalidate(4, matches = $$props.matches);
+    		if ('noMatches' in $$props) $$invalidate(5, noMatches = $$props.noMatches);
+    		if ('started' in $$props) started = $$props.started;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -6730,6 +6761,7 @@ var app = (function () {
     	}
 
     	return [
+    		handleStartClick,
     		svg,
     		cardHolder,
     		cardArray,
@@ -6751,7 +6783,22 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { rows: 9, columns: 10, init: 11 }, null, [-1, -1]);
+
+    		init(
+    			this,
+    			options,
+    			instance,
+    			create_fragment,
+    			safe_not_equal,
+    			{
+    				rows: 10,
+    				columns: 11,
+    				init: 12,
+    				handleStartClick: 0
+    			},
+    			null,
+    			[-1, -1]
+    		);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -6763,11 +6810,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*rows*/ ctx[9] === undefined && !('rows' in props)) {
+    		if (/*rows*/ ctx[10] === undefined && !('rows' in props)) {
     			console_1.warn("<App> was created without expected prop 'rows'");
     		}
 
-    		if (/*columns*/ ctx[10] === undefined && !('columns' in props)) {
+    		if (/*columns*/ ctx[11] === undefined && !('columns' in props)) {
     			console_1.warn("<App> was created without expected prop 'columns'");
     		}
     	}
@@ -6789,10 +6836,18 @@ var app = (function () {
     	}
 
     	get init() {
-    		return this.$$.ctx[11];
+    		return this.$$.ctx[12];
     	}
 
     	set init(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get handleStartClick() {
+    		return this.$$.ctx[0];
+    	}
+
+    	set handleStartClick(value) {
     		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -6800,8 +6855,8 @@ var app = (function () {
     const app = new App({
     	target: document.body,
     	props: {
-    		rows: 6,
-    		columns: 6
+    		rows: 4,
+    		columns: 4
     	}
     });
 

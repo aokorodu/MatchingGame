@@ -22,8 +22,16 @@
 	let matches = 0;
 	let noMatches = 0;
 
+	let started = false;
+
 	export function init() {
 		console.log("cards:", cardArray.length);
+	}
+
+	export function handleStartClick() {
+		if(started) return;
+
+		started = true;
 		deal();
 		setTimeout(shuffle, 5000);
 	}
@@ -46,11 +54,14 @@
 	function handleCardClick(e) {
 		if (selectedCards.length >= 2) return;
 
-		const index = e.detail.index;
-		const newCard = cardArray[index];
+		selectCard(e.detail.index)
+		checkIfMatching();
+	}
+
+	function selectCard(cardIndex){
+		const newCard = cardArray[cardIndex];
 		newCard.show();
 		selectedCards.push(newCard);
-		checkIfMatching();
 	}
 
 	function checkIfMatching() {
@@ -92,24 +103,25 @@
 		}, 2000);
 	}
 
-	function shuffle(){
+	function shuffle() {
 		let indexArray = [];
-		for(let i = 0; i < totalCards; i++){
+		for (let i = 0; i < totalCards; i++) {
 			indexArray.push(i);
 		}
 		indexArray = indexArray.sort((a, b) => 0.5 - Math.random());
-		console.log('indexArray:', indexArray.toString())
+		console.log("indexArray:", indexArray.toString());
 
 		const startX = (w - rowWidth) / 2;
 		const startY = (h - columnHeight) / 2;
-		for(let i = 0; i < totalCards; i++){
+		for (let i = 0; i < totalCards; i++) {
 			let col = i % columns;
-			let row = Math.floor(i/columns);
+			let row = Math.floor(i / columns);
 			const index = indexArray[i];
 			cardArray[index].move(
-					startX + row * (cardWidth + gap),
-					startY + col * (cardHeight + gap)
-				);
+				startX + row * (cardWidth + gap),
+				startY + col * (cardHeight + gap),
+				Math.random()
+			);
 		}
 	}
 </script>
@@ -129,6 +141,10 @@
 			/>
 		{/each}
 	</svg>
+
+	<div 
+		on:click={handleStartClick} 
+		class="deal-button">START</div>
 </main>
 
 <style>
@@ -142,5 +158,28 @@
 
 	svg {
 		border: 1px solid black;
+	}
+
+	.deal-button {
+		padding: 0.5rem 2rem;
+		border: 3px solid #212121;
+		margin: 1rem;
+		border-radius: 10px;
+		font-weight: bold;
+		color: #212121;
+		background-color: #eaeaea;
+		transition-property: all;
+		transition-duration: 0.3s;
+		-webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+	}
+
+	.deal-button:hover {
+		font-weight: bold;
+		background-color: #fff;
+		cursor: pointer;
 	}
 </style>

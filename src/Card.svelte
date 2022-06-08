@@ -21,7 +21,7 @@
 
   export function move(newX, newY, delay=0) {
     gsap.to(position, {
-      duration: 1,
+      duration: .5,
       x: newX,
       y: newY,
       delay:delay,
