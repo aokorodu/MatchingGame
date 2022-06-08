@@ -15,16 +15,19 @@
   };
   let w = 50;
   let h = 50;
-  let showing = false;
-  let selected = false;
-  let locked = false;
 
-  export function move(newX, newY, delay=0) {
+  let state = {
+    showing: false,
+    selected: true,
+    locked: false,
+  };
+
+  export function move(newX, newY, delay = 0) {
     gsap.to(position, {
-      duration: .5,
+      duration: 0.5,
       x: newX,
       y: newY,
-      delay:delay,
+      delay: delay,
       onUpdate: () => {
         position = position;
       },
@@ -35,23 +38,35 @@
     return symbol;
   }
 
-  export function show() {
-    selected = true;
+  export function show(delay = 0) {
+    gsap.set(state, {
+      selected: true,
+      delay: delay,
+      onComplete: () => {
+        state = state;
+      },
+    });
   }
 
-  export function hide() {
-    selected = false;
+  export function hide(delay = 0) {
+    gsap.set(state, {
+      selected: false,
+      delay: delay,
+      onComplete: () => {
+        state = state;
+      },
+    });
   }
 
-  export function lock(){
-    locked = true;
+  export function lock() {
+    state.locked = true;
+    state = state;
   }
 
   function clickhandler(e) {
-    if (selected) return;
-    if (locked) return;
+    if (state.selected) return;
+    if (state.locked) return;
 
-    console.log("index", index);
     dispatch("cardClick", {
       index: index,
       symb: symbol,
@@ -61,7 +76,9 @@
 
 <g
   bind:this={holder}
-  transform="translate({parseInt(position.x) + w/2}, {parseInt(position.y + h/2)})"
+  transform="translate({parseInt(position.x) + w / 2}, {parseInt(
+    position.y + h / 2
+  )})"
 >
   <rect
     x={-w / 2}
@@ -79,14 +96,14 @@
     dominant-baseline="middle"
     text-anchor="middle">{symbol}</text
   >
-  {#if !selected}
+  {#if !state.selected}
     <rect
       on:click={clickhandler}
       x={-w / 2}
       y={-h / 2}
       width={w}
       height={h}
-      fill="grey"
+      fill="#288DDD"
       fill-opacity="1"
       stroke="black"
     />

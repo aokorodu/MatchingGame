@@ -3,6 +3,10 @@
 
 	let svg;
 	let cardHolder;
+	let svgWidth = "500px";
+	let svgHeight = "500px";
+	// let svgWidth = "100%";
+	// let svgHeight = "100%";
 	let w = 500;
 	let h = 500;
 	let cardWidth = 50;
@@ -31,12 +35,28 @@
 	export function handleStartClick() {
 		if(started) return;
 
+		start();
+	}
+
+	function start(){
 		started = true;
 		deal();
-		setTimeout(shuffle, 5000);
+		setTimeout(hideAll, totalCards*100);
+		setTimeout(shuffle, totalCards*200);
+	}
+
+	function hideAll(){
+		console.log('hiding');
+		cardArray.forEach((card, index)=>{
+			const row = Math.floor(index/rows);
+			const col = index % columns
+			card.hide(row/10 + col/10)
+		})
 	}
 
 	function deal() {
+		console.log('dealing');
+
 		const startX = (w - rowWidth) / 2;
 		const startY = (h - columnHeight) / 2;
 		for (let r = 0; r < rows; r++) {
@@ -104,12 +124,12 @@
 	}
 
 	function shuffle() {
+		console.log('shuffling');
 		let indexArray = [];
 		for (let i = 0; i < totalCards; i++) {
 			indexArray.push(i);
 		}
 		indexArray = indexArray.sort((a, b) => 0.5 - Math.random());
-		console.log("indexArray:", indexArray.toString());
 
 		const startX = (w - rowWidth) / 2;
 		const startY = (h - columnHeight) / 2;
@@ -128,13 +148,13 @@
 
 <main>
 	<div>matches: {matches} wrong guesses: {noMatches}</div>
-	<svg bind:this={svg} width="{w}px" height="{h}px" viewBox="0 0 {w} {h}">
+	<svg bind:this={svg} width={svgWidth} height={svgHeight} viewBox="0 0 {w} {h}">
 		<g bind:this={cardHolder} />
 		{#each symbols as symbol, index}
 			<Card
 				on:cardClick={handleCardClick}
-				x="35"
-				y={h / 2}
+				x={(25) + (index * .5)}
+				y={(h/2) - (index * .5)}
 				{index}
 				bind:this={cardArray[index]}
 				{symbol}
