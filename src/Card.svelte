@@ -5,6 +5,7 @@
   const dispatch = createEventDispatcher();
 
   let holder;
+  let face;
   export let symbol = "A";
   export let x;
   export let y;
@@ -21,6 +22,8 @@
     selected: true,
     locked: false,
   };
+
+  const fadeDuration = .3;
 
   export function move(newX, newY, delay = 0) {
     gsap.to(position, {
@@ -39,22 +42,22 @@
   }
 
   export function show(delay = 0) {
-    gsap.set(state, {
-      selected: true,
+   state.selected = true;
+
+    gsap.to(face, {
+      duration: fadeDuration,
+      opacity: 0,
       delay: delay,
-      onComplete: () => {
-        state = state;
-      },
     });
   }
 
   export function hide(delay = 0) {
-    gsap.set(state, {
-      selected: false,
+    state.selected = false;
+
+    gsap.to(face, {
+      duration: fadeDuration,
+      opacity: 1,
       delay: delay,
-      onComplete: () => {
-        state = state;
-      },
     });
   }
 
@@ -85,29 +88,49 @@
     y={-h / 2}
     width={w}
     height={h}
-    fill="white"
-    stroke="black"
+    rx="10"
+    ry="10"
+    fill="#fafafa"
+    stroke="#212121"
+    stroke-width="2"
   />
+
+  
   <text
     x="0"
     y="0"
-    font-size="25"
+    fill="#212121"
+    stroke="none"
+    font-size="30"
     font-weight="900"
     dominant-baseline="middle"
     text-anchor="middle">{symbol}</text
   >
-  {#if !state.selected}
-    <rect
-      on:click={clickhandler}
-      x={-w / 2}
-      y={-h / 2}
-      width={w}
-      height={h}
-      fill="#288DDD"
-      fill-opacity="1"
-      stroke="black"
-    />
-  {/if}
+
+  <rect
+    bind:this={face}
+    id="face"
+    x={-w / 2}
+    y={-h / 2}
+    rx="10"
+    ry="10"
+    width={w}
+    height={h}
+    fill="#288DDD"
+    opacity=0
+    stroke="black"
+  />
+
+  <rect
+    on:click={clickhandler}
+    id="hitarea"
+    x={-w / 2}
+    y={-h / 2}
+    width={w}
+    height={h}
+    fill="#288DDD"
+    fill-opacity="0"
+  />
 </g>
 
 <style>

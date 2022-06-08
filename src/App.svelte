@@ -1,6 +1,6 @@
 <script>
 	import Card from "./Card.svelte";
-
+	import Timer from "./Timer.svelte";
 	let svg;
 	let cardHolder;
 	let svgWidth = "500px";
@@ -160,6 +160,7 @@
 				{symbol}
 			/>
 		{/each}
+		<Timer x="450" y="35" duration="60" />
 	</svg>
 
 	<div 
