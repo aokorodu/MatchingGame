@@ -27,10 +27,11 @@
 
   export function move(newX, newY, delay = 0) {
     gsap.to(position, {
-      duration: 0.5,
+      duration: .75,
       x: newX,
       y: newY,
       delay: delay,
+      ease:"power2.inOut",
       onUpdate: () => {
         position = position;
       },

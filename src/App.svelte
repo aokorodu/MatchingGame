@@ -28,6 +28,8 @@
 
 	let started = false;
 
+	let timer;
+
 	export function init() {
 		console.log("cards:", cardArray.length);
 	}
@@ -42,7 +44,7 @@
 		started = true;
 		deal();
 		setTimeout(hideAll, totalCards*100);
-		setTimeout(shuffle, totalCards*200);
+		setTimeout(shuffle, totalCards*150);
 	}
 
 	function hideAll(){
@@ -72,6 +74,8 @@
 	}
 
 	function handleCardClick(e) {
+		if(!timer.isRunning()) timer.start();
+		
 		if (selectedCards.length >= 2) return;
 
 		selectCard(e.detail.index)
@@ -120,7 +124,7 @@
 			});
 
 			selectedCards = [];
-		}, 2000);
+		}, 1200);
 	}
 
 	function shuffle() {
@@ -147,7 +151,7 @@
 </script>
 
 <main>
-	<div>matches: {matches} wrong guesses: {noMatches}</div>
+	<div class="scorecard">	MATCHES: <span>{matches}</span> WRONG GUESSES: <span>{noMatches}</span></div>
 	<svg bind:this={svg} width={svgWidth} height={svgHeight} viewBox="0 0 {w} {h}">
 		<g bind:this={cardHolder} />
 		{#each symbols as symbol, index}
@@ -160,7 +164,7 @@
 				{symbol}
 			/>
 		{/each}
-		<Timer x="450" y="35" duration="60" />
+		<Timer bind:this={timer} x="450" y="35" duration="60" />
 	</svg>
 
 	<div 
@@ -169,6 +173,17 @@
 </main>
 
 <style>
+	.scorecard {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: .5rem;
+	}
+	span {
+		font-size: 3rem;
+		font-weight: 900;
+	}
 	main {
 		display: flex;
 		flex-direction: column;
