@@ -31,6 +31,7 @@
 	let started = false;
 
 	let timer;
+	let gameOver = true;
 
 	export function init() {
 		console.log("cards:", cardArray.length);
@@ -47,6 +48,17 @@
 		deal();
 		setTimeout(hideAll, totalCards*100);
 		setTimeout(shuffle, totalCards*150);
+		setTimeout(begin, totalCards*200);
+	}
+
+	function begin(){
+		console.log('begin')
+		gameOver = false;
+	}
+
+	function end(){
+		console.log('end')
+		gameOver = true;
 	}
 
 	function hideAll(){
@@ -76,12 +88,20 @@
 	}
 
 	function handleCardClick(e) {
+		if(gameOver) return;
+		if (selectedCards.length >= 2) return;
+
 		if(!timer.isRunning()) timer.start();
 		
-		if (selectedCards.length >= 2) return;
+		
 
 		selectCard(e.detail.index)
 		checkIfMatching();
+	}
+
+	function handleTimesUp(){
+		console.log('Times UP!!');
+		end();
 	}
 
 	function selectCard(cardIndex){
@@ -169,7 +189,7 @@
 				{symbol}
 			/>
 		{/each}
-		<Timer bind:this={timer} x="450" y="35" duration={duration} />
+		<Timer on:timesUp={handleTimesUp} bind:this={timer} x="450" y="35" duration={duration} />
 	</svg>
 
 	<div 

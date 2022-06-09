@@ -6421,9 +6421,10 @@ var app = (function () {
     			attr_dev(text_1, "font-weight", "900");
     			attr_dev(text_1, "dominant-baseline", "middle");
     			attr_dev(text_1, "text-anchor", "middle");
-    			add_location(text_1, file$1, 35, 2, 558);
+    			attr_dev(text_1, "class", "svelte-ka21ck");
+    			add_location(text_1, file$1, 48, 2, 848);
     			attr_dev(g, "transform", g_transform_value = "translate(" + /*x*/ ctx[0] + ", " + /*y*/ ctx[1] + ")");
-    			add_location(g, file$1, 34, 0, 520);
+    			add_location(g, file$1, 47, 0, 810);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6468,19 +6469,16 @@ var app = (function () {
     	return block;
     }
 
-    function stop() {
-    	
-    }
-
     function instance$1($$self, $$props, $$invalidate) {
     	let remaining;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Timer', slots, []);
+    	const dispatch = createEventDispatcher();
     	let { x = 250 } = $$props;
     	let { y = 50 } = $$props;
     	let { duration = 60 } = $$props;
     	let elapsed = 0;
-    	let int;
+    	let timerInterval;
     	let started = false;
 
     	function isRunning() {
@@ -6488,10 +6486,10 @@ var app = (function () {
     	}
 
     	function start() {
-    		console.log('start timer');
+    		console.log('timer start');
     		started = true;
 
-    		int = setInterval(
+    		timerInterval = setInterval(
     			() => {
     				tick();
     			},
@@ -6499,8 +6497,25 @@ var app = (function () {
     		);
     	}
 
+    	function stop() {
+    		console.log('timer stop');
+    		clearInterval(timerInterval);
+    	}
+
+    	function end() {
+    		console.log('timer end');
+    		dispatch("timesUp");
+    	}
+
     	function tick(e) {
-    		if (remaining <= 0) return;
+    		console.log('timer tick');
+
+    		if (remaining <= 0) {
+    			stop();
+    			end();
+    			return;
+    		}
+
     		$$invalidate(7, elapsed++, elapsed);
     	}
 
@@ -6517,15 +6532,18 @@ var app = (function () {
     	};
 
     	$$self.$capture_state = () => ({
+    		createEventDispatcher,
+    		dispatch,
     		x,
     		y,
     		duration,
     		elapsed,
-    		int,
+    		timerInterval,
     		started,
     		isRunning,
     		start,
     		stop,
+    		end,
     		tick,
     		remaining
     	});
@@ -6535,7 +6553,7 @@ var app = (function () {
     		if ('y' in $$props) $$invalidate(1, y = $$props.y);
     		if ('duration' in $$props) $$invalidate(3, duration = $$props.duration);
     		if ('elapsed' in $$props) $$invalidate(7, elapsed = $$props.elapsed);
-    		if ('int' in $$props) int = $$props.int;
+    		if ('timerInterval' in $$props) timerInterval = $$props.timerInterval;
     		if ('started' in $$props) started = $$props.started;
     		if ('remaining' in $$props) $$invalidate(2, remaining = $$props.remaining);
     	};
@@ -6615,7 +6633,7 @@ var app = (function () {
     	}
 
     	get stop() {
-    		return stop;
+    		return this.$$.ctx[6];
     	}
 
     	set stop(value) {
@@ -6630,27 +6648,27 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[39] = list[i];
-    	child_ctx[40] = list;
-    	child_ctx[41] = i;
+    	child_ctx[43] = list[i];
+    	child_ctx[44] = list;
+    	child_ctx[45] = i;
     	return child_ctx;
     }
 
-    // (160:2) {#each symbols as symbol, index}
+    // (180:2) {#each symbols as symbol, index}
     function create_each_block(ctx) {
     	let card;
-    	let index = /*index*/ ctx[41];
+    	let index = /*index*/ ctx[45];
     	let current;
-    	const assign_card = () => /*card_binding*/ ctx[20](card, index);
-    	const unassign_card = () => /*card_binding*/ ctx[20](null, index);
+    	const assign_card = () => /*card_binding*/ ctx[21](card, index);
+    	const unassign_card = () => /*card_binding*/ ctx[21](null, index);
 
     	let card_props = {
-    		x: 25 + /*index*/ ctx[41] * .5,
-    		y: /*h*/ ctx[13] / 2 - /*index*/ ctx[41] * .5,
+    		x: 25 + /*index*/ ctx[45] * .5,
+    		y: /*h*/ ctx[13] / 2 - /*index*/ ctx[45] * .5,
     		w: /*cardWidth*/ ctx[0],
     		h: /*cardHeight*/ ctx[1],
-    		index: /*index*/ ctx[41],
-    		symbol: /*symbol*/ ctx[39]
+    		index: /*index*/ ctx[45],
+    		symbol: /*symbol*/ ctx[43]
     	};
 
     	card = new Card({ props: card_props, $$inline: true });
@@ -6666,9 +6684,9 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (index !== /*index*/ ctx[41]) {
+    			if (index !== /*index*/ ctx[45]) {
     				unassign_card();
-    				index = /*index*/ ctx[41];
+    				index = /*index*/ ctx[45];
     				assign_card();
     			}
 
@@ -6696,7 +6714,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(160:2) {#each symbols as symbol, index}",
+    		source: "(180:2) {#each symbols as symbol, index}",
     		ctx
     	});
 
@@ -6742,7 +6760,8 @@ var app = (function () {
     	};
 
     	timer_1 = new Timer({ props: timer_1_props, $$inline: true });
-    	/*timer_1_binding*/ ctx[21](timer_1);
+    	/*timer_1_binding*/ ctx[22](timer_1);
+    	timer_1.$on("timesUp", /*handleTimesUp*/ ctx[16]);
 
     	const block = {
     		c: function create() {
@@ -6769,27 +6788,27 @@ var app = (function () {
     			div1 = element("div");
     			div1.textContent = "START";
     			attr_dev(span0, "class", "svelte-7z3ll9");
-    			add_location(span0, file, 155, 34, 3143);
+    			add_location(span0, file, 175, 34, 3425);
     			attr_dev(span1, "class", "svelte-7z3ll9");
-    			add_location(span1, file, 155, 72, 3181);
+    			add_location(span1, file, 175, 72, 3463);
     			attr_dev(div0, "class", "scorecard svelte-7z3ll9");
-    			add_location(div0, file, 155, 1, 3110);
+    			add_location(div0, file, 175, 1, 3392);
     			attr_dev(rect, "x", "-50");
     			attr_dev(rect, "y", "490");
     			attr_dev(rect, "width", "600");
     			attr_dev(rect, "height", "10");
     			attr_dev(rect, "fill", "#212121");
-    			add_location(rect, file, 157, 2, 3295);
-    			add_location(g, file, 158, 2, 3361);
+    			add_location(rect, file, 177, 2, 3577);
+    			add_location(g, file, 178, 2, 3643);
     			attr_dev(svg_1, "width", /*svgWidth*/ ctx[10]);
     			attr_dev(svg_1, "height", /*svgHeight*/ ctx[11]);
     			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[12] + " " + /*h*/ ctx[13]);
     			attr_dev(svg_1, "class", "svelte-7z3ll9");
-    			add_location(svg_1, file, 156, 1, 3213);
+    			add_location(svg_1, file, 176, 1, 3495);
     			attr_dev(div1, "class", "deal-button svelte-7z3ll9");
-    			add_location(div1, file, 174, 1, 3712);
+    			add_location(div1, file, 194, 1, 4021);
     			attr_dev(main, "class", "svelte-7z3ll9");
-    			add_location(main, file, 154, 0, 3102);
+    			add_location(main, file, 174, 0, 3384);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6807,7 +6826,7 @@ var app = (function () {
     			append_dev(main, svg_1);
     			append_dev(svg_1, rect);
     			append_dev(svg_1, g);
-    			/*g_binding*/ ctx[19](g);
+    			/*g_binding*/ ctx[20](g);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(svg_1, null);
@@ -6815,7 +6834,7 @@ var app = (function () {
 
     			append_dev(svg_1, each_1_anchor);
     			mount_component(timer_1, svg_1, null);
-    			/*svg_1_binding*/ ctx[22](svg_1);
+    			/*svg_1_binding*/ ctx[23](svg_1);
     			append_dev(main, t5);
     			append_dev(main, div1);
     			current = true;
@@ -6883,11 +6902,11 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			/*g_binding*/ ctx[19](null);
+    			/*g_binding*/ ctx[20](null);
     			destroy_each(each_blocks, detaching);
-    			/*timer_1_binding*/ ctx[21](null);
+    			/*timer_1_binding*/ ctx[22](null);
     			destroy_component(timer_1);
-    			/*svg_1_binding*/ ctx[22](null);
+    			/*svg_1_binding*/ ctx[23](null);
     			mounted = false;
     			dispose();
     		}
@@ -6935,6 +6954,7 @@ var app = (function () {
     	let noMatches = 0;
     	let started = false;
     	let timer;
+    	let gameOver = true;
 
     	function init() {
     		console.log("cards:", cardArray.length);
@@ -6950,6 +6970,17 @@ var app = (function () {
     		deal();
     		setTimeout(hideAll, totalCards * 100);
     		setTimeout(shuffle, totalCards * 150);
+    		setTimeout(begin, totalCards * 200);
+    	}
+
+    	function begin() {
+    		console.log('begin');
+    		gameOver = false;
+    	}
+
+    	function end() {
+    		console.log('end');
+    		gameOver = true;
     	}
 
     	function hideAll() {
@@ -6976,10 +7007,16 @@ var app = (function () {
     	}
 
     	function handleCardClick(e) {
-    		if (!timer.isRunning()) timer.start();
+    		if (gameOver) return;
     		if (selectedCards.length >= 2) return;
+    		if (!timer.isRunning()) timer.start();
     		selectCard(e.detail.index);
     		checkIfMatching();
+    	}
+
+    	function handleTimesUp() {
+    		console.log('Times UP!!');
+    		end();
     	}
 
     	function selectCard(cardIndex) {
@@ -7088,8 +7125,8 @@ var app = (function () {
     	}
 
     	$$self.$$set = $$props => {
-    		if ('rows' in $$props) $$invalidate(16, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(17, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(17, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(18, columns = $$props.columns);
     		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
     		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
     		if ('duration' in $$props) $$invalidate(2, duration = $$props.duration);
@@ -7121,12 +7158,16 @@ var app = (function () {
     		noMatches,
     		started,
     		timer,
+    		gameOver,
     		init,
     		handleStartClick,
     		start,
+    		begin,
+    		end,
     		hideAll,
     		deal,
     		handleCardClick,
+    		handleTimesUp,
     		selectCard,
     		checkIfMatching,
     		isMatching,
@@ -7143,8 +7184,8 @@ var app = (function () {
     		if ('w' in $$props) $$invalidate(12, w = $$props.w);
     		if ('h' in $$props) $$invalidate(13, h = $$props.h);
     		if ('gap' in $$props) gap = $$props.gap;
-    		if ('rows' in $$props) $$invalidate(16, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(17, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(17, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(18, columns = $$props.columns);
     		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
     		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
     		if ('duration' in $$props) $$invalidate(2, duration = $$props.duration);
@@ -7159,6 +7200,7 @@ var app = (function () {
     		if ('noMatches' in $$props) $$invalidate(8, noMatches = $$props.noMatches);
     		if ('started' in $$props) started = $$props.started;
     		if ('timer' in $$props) $$invalidate(9, timer = $$props.timer);
+    		if ('gameOver' in $$props) gameOver = $$props.gameOver;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -7182,6 +7224,7 @@ var app = (function () {
     		h,
     		symbols,
     		handleCardClick,
+    		handleTimesUp,
     		rows,
     		columns,
     		init,
@@ -7203,12 +7246,12 @@ var app = (function () {
     			create_fragment,
     			safe_not_equal,
     			{
-    				rows: 16,
-    				columns: 17,
+    				rows: 17,
+    				columns: 18,
     				cardWidth: 0,
     				cardHeight: 1,
     				duration: 2,
-    				init: 18,
+    				init: 19,
     				handleStartClick: 3
     			},
     			null,
@@ -7225,11 +7268,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*rows*/ ctx[16] === undefined && !('rows' in props)) {
+    		if (/*rows*/ ctx[17] === undefined && !('rows' in props)) {
     			console_1.warn("<App> was created without expected prop 'rows'");
     		}
 
-    		if (/*columns*/ ctx[17] === undefined && !('columns' in props)) {
+    		if (/*columns*/ ctx[18] === undefined && !('columns' in props)) {
     			console_1.warn("<App> was created without expected prop 'columns'");
     		}
     	}
@@ -7275,7 +7318,7 @@ var app = (function () {
     	}
 
     	get init() {
-    		return this.$$.ctx[18];
+    		return this.$$.ctx[19];
     	}
 
     	set init(value) {
@@ -7294,8 +7337,8 @@ var app = (function () {
     const app = new App({
     	target: document.body,
     	props: {
-    		rows: 6,
-    		columns: 6,
+    		rows: 4,
+    		columns: 4,
     		cardWidth: 60,
     		cardHeight: 60,
     		duration: 30
