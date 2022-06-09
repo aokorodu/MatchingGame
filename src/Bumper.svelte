@@ -12,10 +12,10 @@
 
   onMount(() => {
     gsap.to("#holder", {
-      scale:1,
+      transform: "scale(1)",
       duration: 1,
-      delay: .5,
-      ease: "expo.out",
+      delay: 0.5,
+      ease: "elastic.out",
       onComplete: () => {
         console.log("animation over");
       },
@@ -26,14 +26,14 @@
 <g>
   <rect x="0" y="0" width="500" height="500" fill="black" fill-opacity=".8" />
   <g transform="translate(250 250)">
-    <text id="holder"
+    <text
+      id="holder"
+      transform="scale(0)"
       x="0"
       y="0"
-      transform="scale(0)"
-      transform-origin="50% 50%"
       fill="lightblue"
       stroke="none"
-      font-size="60"
+      font-size="70"
       font-weight="900"
       dominant-baseline="middle"
       text-anchor="middle">{displayMessage}</text
@@ -41,4 +41,8 @@
   >
 </g>
 
-<style></style>
+<style>
+  text {
+    transform-origin: center;
+  }
+</style>
