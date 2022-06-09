@@ -6403,6 +6403,7 @@ var app = (function () {
     	let t0;
     	let t1;
     	let text_1_fill_value;
+    	let text_1_stroke_value;
     	let g_transform_value;
 
     	const block = {
@@ -6414,7 +6415,7 @@ var app = (function () {
     			attr_dev(text_1, "x", "0");
     			attr_dev(text_1, "y", "0");
     			attr_dev(text_1, "fill", text_1_fill_value = /*remaining*/ ctx[2] < 11 ? "red" : "white");
-    			attr_dev(text_1, "stroke", "black");
+    			attr_dev(text_1, "stroke", text_1_stroke_value = /*remaining*/ ctx[2] < 11 ? "red" : "black");
     			attr_dev(text_1, "stroke-width", "2");
     			attr_dev(text_1, "font-size", "60");
     			attr_dev(text_1, "font-weight", "900");
@@ -6439,6 +6440,10 @@ var app = (function () {
 
     			if (dirty & /*remaining*/ 4 && text_1_fill_value !== (text_1_fill_value = /*remaining*/ ctx[2] < 11 ? "red" : "white")) {
     				attr_dev(text_1, "fill", text_1_fill_value);
+    			}
+
+    			if (dirty & /*remaining*/ 4 && text_1_stroke_value !== (text_1_stroke_value = /*remaining*/ ctx[2] < 11 ? "red" : "black")) {
+    				attr_dev(text_1, "stroke", text_1_stroke_value);
     			}
 
     			if (dirty & /*x, y*/ 3 && g_transform_value !== (g_transform_value = "translate(" + /*x*/ ctx[0] + ", " + /*y*/ ctx[1] + ")")) {
@@ -6625,32 +6630,32 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[38] = list[i];
-    	child_ctx[39] = list;
-    	child_ctx[40] = i;
+    	child_ctx[39] = list[i];
+    	child_ctx[40] = list;
+    	child_ctx[41] = i;
     	return child_ctx;
     }
 
-    // (158:2) {#each symbols as symbol, index}
+    // (160:2) {#each symbols as symbol, index}
     function create_each_block(ctx) {
     	let card;
-    	let index = /*index*/ ctx[40];
+    	let index = /*index*/ ctx[41];
     	let current;
-    	const assign_card = () => /*card_binding*/ ctx[19](card, index);
-    	const unassign_card = () => /*card_binding*/ ctx[19](null, index);
+    	const assign_card = () => /*card_binding*/ ctx[20](card, index);
+    	const unassign_card = () => /*card_binding*/ ctx[20](null, index);
 
     	let card_props = {
-    		x: 25 + /*index*/ ctx[40] * .5,
-    		y: /*h*/ ctx[12] / 2 - /*index*/ ctx[40] * .5,
+    		x: 25 + /*index*/ ctx[41] * .5,
+    		y: /*h*/ ctx[13] / 2 - /*index*/ ctx[41] * .5,
     		w: /*cardWidth*/ ctx[0],
     		h: /*cardHeight*/ ctx[1],
-    		index: /*index*/ ctx[40],
-    		symbol: /*symbol*/ ctx[38]
+    		index: /*index*/ ctx[41],
+    		symbol: /*symbol*/ ctx[39]
     	};
 
     	card = new Card({ props: card_props, $$inline: true });
     	assign_card();
-    	card.$on("cardClick", /*handleCardClick*/ ctx[14]);
+    	card.$on("cardClick", /*handleCardClick*/ ctx[15]);
 
     	const block = {
     		c: function create() {
@@ -6661,9 +6666,9 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (index !== /*index*/ ctx[40]) {
+    			if (index !== /*index*/ ctx[41]) {
     				unassign_card();
-    				index = /*index*/ ctx[40];
+    				index = /*index*/ ctx[41];
     				assign_card();
     			}
 
@@ -6691,7 +6696,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(158:2) {#each symbols as symbol, index}",
+    		source: "(160:2) {#each symbols as symbol, index}",
     		ctx
     	});
 
@@ -6709,6 +6714,7 @@ var app = (function () {
     	let t3;
     	let t4;
     	let svg_1;
+    	let rect;
     	let g;
     	let each_1_anchor;
     	let timer_1;
@@ -6717,7 +6723,7 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	let each_value = /*symbols*/ ctx[13];
+    	let each_value = /*symbols*/ ctx[14];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -6729,9 +6735,14 @@ var app = (function () {
     		each_blocks[i] = null;
     	});
 
-    	let timer_1_props = { x: "450", y: "35", duration: "60" };
+    	let timer_1_props = {
+    		x: "450",
+    		y: "35",
+    		duration: /*duration*/ ctx[2]
+    	};
+
     	timer_1 = new Timer({ props: timer_1_props, $$inline: true });
-    	/*timer_1_binding*/ ctx[20](timer_1);
+    	/*timer_1_binding*/ ctx[21](timer_1);
 
     	const block = {
     		c: function create() {
@@ -6739,12 +6750,13 @@ var app = (function () {
     			div0 = element("div");
     			t0 = text("MATCHES: ");
     			span0 = element("span");
-    			t1 = text(/*matches*/ ctx[6]);
+    			t1 = text(/*matches*/ ctx[7]);
     			t2 = text(" WRONG GUESSES: ");
     			span1 = element("span");
-    			t3 = text(/*noMatches*/ ctx[7]);
+    			t3 = text(/*noMatches*/ ctx[8]);
     			t4 = space();
     			svg_1 = svg_element("svg");
+    			rect = svg_element("rect");
     			g = svg_element("g");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -6757,21 +6769,27 @@ var app = (function () {
     			div1 = element("div");
     			div1.textContent = "START";
     			attr_dev(span0, "class", "svelte-7z3ll9");
-    			add_location(span0, file, 154, 34, 3116);
+    			add_location(span0, file, 155, 34, 3143);
     			attr_dev(span1, "class", "svelte-7z3ll9");
-    			add_location(span1, file, 154, 72, 3154);
+    			add_location(span1, file, 155, 72, 3181);
     			attr_dev(div0, "class", "scorecard svelte-7z3ll9");
-    			add_location(div0, file, 154, 1, 3083);
-    			add_location(g, file, 156, 2, 3268);
-    			attr_dev(svg_1, "width", /*svgWidth*/ ctx[9]);
-    			attr_dev(svg_1, "height", /*svgHeight*/ ctx[10]);
-    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[11] + " " + /*h*/ ctx[12]);
+    			add_location(div0, file, 155, 1, 3110);
+    			attr_dev(rect, "x", "-50");
+    			attr_dev(rect, "y", "490");
+    			attr_dev(rect, "width", "600");
+    			attr_dev(rect, "height", "10");
+    			attr_dev(rect, "fill", "#212121");
+    			add_location(rect, file, 157, 2, 3295);
+    			add_location(g, file, 158, 2, 3361);
+    			attr_dev(svg_1, "width", /*svgWidth*/ ctx[10]);
+    			attr_dev(svg_1, "height", /*svgHeight*/ ctx[11]);
+    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[12] + " " + /*h*/ ctx[13]);
     			attr_dev(svg_1, "class", "svelte-7z3ll9");
-    			add_location(svg_1, file, 155, 1, 3186);
+    			add_location(svg_1, file, 156, 1, 3213);
     			attr_dev(div1, "class", "deal-button svelte-7z3ll9");
-    			add_location(div1, file, 172, 1, 3613);
+    			add_location(div1, file, 174, 1, 3712);
     			attr_dev(main, "class", "svelte-7z3ll9");
-    			add_location(main, file, 153, 0, 3075);
+    			add_location(main, file, 154, 0, 3102);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6787,8 +6805,9 @@ var app = (function () {
     			append_dev(span1, t3);
     			append_dev(main, t4);
     			append_dev(main, svg_1);
+    			append_dev(svg_1, rect);
     			append_dev(svg_1, g);
-    			/*g_binding*/ ctx[18](g);
+    			/*g_binding*/ ctx[19](g);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(svg_1, null);
@@ -6796,22 +6815,22 @@ var app = (function () {
 
     			append_dev(svg_1, each_1_anchor);
     			mount_component(timer_1, svg_1, null);
-    			/*svg_1_binding*/ ctx[21](svg_1);
+    			/*svg_1_binding*/ ctx[22](svg_1);
     			append_dev(main, t5);
     			append_dev(main, div1);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(div1, "click", /*handleStartClick*/ ctx[2], false, false, false);
+    				dispose = listen_dev(div1, "click", /*handleStartClick*/ ctx[3], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (!current || dirty[0] & /*matches*/ 64) set_data_dev(t1, /*matches*/ ctx[6]);
-    			if (!current || dirty[0] & /*noMatches*/ 128) set_data_dev(t3, /*noMatches*/ ctx[7]);
+    			if (!current || dirty[0] & /*matches*/ 128) set_data_dev(t1, /*matches*/ ctx[7]);
+    			if (!current || dirty[0] & /*noMatches*/ 256) set_data_dev(t3, /*noMatches*/ ctx[8]);
 
-    			if (dirty[0] & /*h, cardWidth, cardHeight, symbols, cardArray, handleCardClick*/ 28707) {
-    				each_value = /*symbols*/ ctx[13];
+    			if (dirty[0] & /*h, cardWidth, cardHeight, symbols, cardArray, handleCardClick*/ 57411) {
+    				each_value = /*symbols*/ ctx[14];
     				validate_each_argument(each_value);
     				let i;
 
@@ -6839,6 +6858,7 @@ var app = (function () {
     			}
 
     			const timer_1_changes = {};
+    			if (dirty[0] & /*duration*/ 4) timer_1_changes.duration = /*duration*/ ctx[2];
     			timer_1.$set(timer_1_changes);
     		},
     		i: function intro(local) {
@@ -6863,11 +6883,11 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			/*g_binding*/ ctx[18](null);
+    			/*g_binding*/ ctx[19](null);
     			destroy_each(each_blocks, detaching);
-    			/*timer_1_binding*/ ctx[20](null);
+    			/*timer_1_binding*/ ctx[21](null);
     			destroy_component(timer_1);
-    			/*svg_1_binding*/ ctx[21](null);
+    			/*svg_1_binding*/ ctx[22](null);
     			mounted = false;
     			dispose();
     		}
@@ -6902,6 +6922,7 @@ var app = (function () {
     	let { columns } = $$props;
     	let { cardWidth = 60 } = $$props;
     	let { cardHeight = 60 } = $$props;
+    	let { duration = 60 } = $$props;
     	let rowWidth = columns * (cardWidth + gap) - gap;
     	let columnHeight = rows * (cardHeight + gap) - gap;
     	let totalCards = rows * columns;
@@ -6988,7 +7009,7 @@ var app = (function () {
     	}
 
     	function collectWinnings() {
-    		$$invalidate(6, matches++, matches);
+    		$$invalidate(7, matches++, matches);
 
     		selectedCards.forEach(card => {
     			card.lock();
@@ -6998,7 +7019,7 @@ var app = (function () {
     	}
 
     	function putEmBack() {
-    		$$invalidate(7, noMatches++, noMatches);
+    		$$invalidate(8, noMatches++, noMatches);
 
     		setTimeout(
     			() => {
@@ -7032,7 +7053,7 @@ var app = (function () {
     		}
     	}
 
-    	const writable_props = ['rows', 'columns', 'cardWidth', 'cardHeight'];
+    	const writable_props = ['rows', 'columns', 'cardWidth', 'cardHeight', 'duration'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
@@ -7041,36 +7062,37 @@ var app = (function () {
     	function g_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			cardHolder = $$value;
-    			$$invalidate(4, cardHolder);
+    			$$invalidate(5, cardHolder);
     		});
     	}
 
     	function card_binding($$value, index) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			cardArray[index] = $$value;
-    			$$invalidate(5, cardArray);
+    			$$invalidate(6, cardArray);
     		});
     	}
 
     	function timer_1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			timer = $$value;
-    			$$invalidate(8, timer);
+    			$$invalidate(9, timer);
     		});
     	}
 
     	function svg_1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			svg = $$value;
-    			$$invalidate(3, svg);
+    			$$invalidate(4, svg);
     		});
     	}
 
     	$$self.$$set = $$props => {
-    		if ('rows' in $$props) $$invalidate(15, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(16, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(16, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(17, columns = $$props.columns);
     		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
     		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
+    		if ('duration' in $$props) $$invalidate(2, duration = $$props.duration);
     	};
 
     	$$self.$capture_state = () => ({
@@ -7087,6 +7109,7 @@ var app = (function () {
     		columns,
     		cardWidth,
     		cardHeight,
+    		duration,
     		rowWidth,
     		columnHeight,
     		totalCards,
@@ -7113,28 +7136,29 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('svg' in $$props) $$invalidate(3, svg = $$props.svg);
-    		if ('cardHolder' in $$props) $$invalidate(4, cardHolder = $$props.cardHolder);
-    		if ('svgWidth' in $$props) $$invalidate(9, svgWidth = $$props.svgWidth);
-    		if ('svgHeight' in $$props) $$invalidate(10, svgHeight = $$props.svgHeight);
-    		if ('w' in $$props) $$invalidate(11, w = $$props.w);
-    		if ('h' in $$props) $$invalidate(12, h = $$props.h);
+    		if ('svg' in $$props) $$invalidate(4, svg = $$props.svg);
+    		if ('cardHolder' in $$props) $$invalidate(5, cardHolder = $$props.cardHolder);
+    		if ('svgWidth' in $$props) $$invalidate(10, svgWidth = $$props.svgWidth);
+    		if ('svgHeight' in $$props) $$invalidate(11, svgHeight = $$props.svgHeight);
+    		if ('w' in $$props) $$invalidate(12, w = $$props.w);
+    		if ('h' in $$props) $$invalidate(13, h = $$props.h);
     		if ('gap' in $$props) gap = $$props.gap;
-    		if ('rows' in $$props) $$invalidate(15, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(16, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(16, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(17, columns = $$props.columns);
     		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
     		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
+    		if ('duration' in $$props) $$invalidate(2, duration = $$props.duration);
     		if ('rowWidth' in $$props) rowWidth = $$props.rowWidth;
     		if ('columnHeight' in $$props) columnHeight = $$props.columnHeight;
     		if ('totalCards' in $$props) totalCards = $$props.totalCards;
     		if ('str' in $$props) str = $$props.str;
-    		if ('symbols' in $$props) $$invalidate(13, symbols = $$props.symbols);
-    		if ('cardArray' in $$props) $$invalidate(5, cardArray = $$props.cardArray);
+    		if ('symbols' in $$props) $$invalidate(14, symbols = $$props.symbols);
+    		if ('cardArray' in $$props) $$invalidate(6, cardArray = $$props.cardArray);
     		if ('selectedCards' in $$props) selectedCards = $$props.selectedCards;
-    		if ('matches' in $$props) $$invalidate(6, matches = $$props.matches);
-    		if ('noMatches' in $$props) $$invalidate(7, noMatches = $$props.noMatches);
+    		if ('matches' in $$props) $$invalidate(7, matches = $$props.matches);
+    		if ('noMatches' in $$props) $$invalidate(8, noMatches = $$props.noMatches);
     		if ('started' in $$props) started = $$props.started;
-    		if ('timer' in $$props) $$invalidate(8, timer = $$props.timer);
+    		if ('timer' in $$props) $$invalidate(9, timer = $$props.timer);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -7144,6 +7168,7 @@ var app = (function () {
     	return [
     		cardWidth,
     		cardHeight,
+    		duration,
     		handleStartClick,
     		svg,
     		cardHolder,
@@ -7178,12 +7203,13 @@ var app = (function () {
     			create_fragment,
     			safe_not_equal,
     			{
-    				rows: 15,
-    				columns: 16,
+    				rows: 16,
+    				columns: 17,
     				cardWidth: 0,
     				cardHeight: 1,
-    				init: 17,
-    				handleStartClick: 2
+    				duration: 2,
+    				init: 18,
+    				handleStartClick: 3
     			},
     			null,
     			[-1, -1]
@@ -7199,11 +7225,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*rows*/ ctx[15] === undefined && !('rows' in props)) {
+    		if (/*rows*/ ctx[16] === undefined && !('rows' in props)) {
     			console_1.warn("<App> was created without expected prop 'rows'");
     		}
 
-    		if (/*columns*/ ctx[16] === undefined && !('columns' in props)) {
+    		if (/*columns*/ ctx[17] === undefined && !('columns' in props)) {
     			console_1.warn("<App> was created without expected prop 'columns'");
     		}
     	}
@@ -7240,8 +7266,16 @@ var app = (function () {
     		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
+    	get duration() {
+    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set duration(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
     	get init() {
-    		return this.$$.ctx[17];
+    		return this.$$.ctx[18];
     	}
 
     	set init(value) {
@@ -7249,7 +7283,7 @@ var app = (function () {
     	}
 
     	get handleStartClick() {
-    		return this.$$.ctx[2];
+    		return this.$$.ctx[3];
     	}
 
     	set handleStartClick(value) {
@@ -7260,10 +7294,11 @@ var app = (function () {
     const app = new App({
     	target: document.body,
     	props: {
-    		rows: 4,
-    		columns: 4,
+    		rows: 6,
+    		columns: 6,
     		cardWidth: 60,
-    		cardHeight: 60
+    		cardHeight: 60,
+    		duration: 30
     	}
     });
 

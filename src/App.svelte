@@ -15,6 +15,7 @@
 	export let columns;
 	export let cardWidth = 60;
 	export let cardHeight = 60;
+	export let duration = 60;
 	let rowWidth = columns * (cardWidth + gap) - gap;
 	let columnHeight = rows * (cardHeight + gap) - gap;
 	let totalCards = rows * columns;
@@ -154,6 +155,7 @@
 <main>
 	<div class="scorecard">	MATCHES: <span>{matches}</span> WRONG GUESSES: <span>{noMatches}</span></div>
 	<svg bind:this={svg} width={svgWidth} height={svgHeight} viewBox="0 0 {w} {h}">
+		<rect x="-50" y="490" width="600" height="10" fill="#212121" />
 		<g bind:this={cardHolder} />
 		{#each symbols as symbol, index}
 			<Card
@@ -167,7 +169,7 @@
 				{symbol}
 			/>
 		{/each}
-		<Timer bind:this={timer} x="450" y="35" duration="60" />
+		<Timer bind:this={timer} x="450" y="35" duration={duration} />
 	</svg>
 
 	<div 

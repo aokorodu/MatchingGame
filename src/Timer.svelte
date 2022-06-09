@@ -37,7 +37,7 @@
     x="0"
     y="0"
     fill={remaining < 11 ? "red" : "white"}
-    stroke="black"
+    stroke={remaining < 11 ? "red" : "black"}
     stroke-width="2"
     font-size="60"
     font-weight="900"
