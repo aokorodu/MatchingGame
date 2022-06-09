@@ -7581,11 +7581,11 @@ var app = (function () {
     const app = new App({
     	target: document.body,
     	props: {
-    		rows: 4,
-    		columns: 4,
-    		cardWidth: 70,
-    		cardHeight: 70,
-    		duration: 30
+    		rows: 6,
+    		columns: 6,
+    		cardWidth: 50,
+    		cardHeight: 50,
+    		duration: 60
     	}
     });
 
