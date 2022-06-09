@@ -1,6 +1,7 @@
 <script>
 	import Card from "./Card.svelte";
 	import Timer from "./Timer.svelte";
+	import Bumper from "./Bumper.svelte";
 	let svg;
 	let cardHolder;
 	let svgWidth = "500px";
@@ -31,7 +32,7 @@
 	let started = false;
 
 	let timer;
-	let gameOver = true;
+	let gameOver = false;
 
 	export function init() {
 		console.log("cards:", cardArray.length);
@@ -59,6 +60,7 @@
 	function end(){
 		console.log('end')
 		gameOver = true;
+		timer.stop();
 	}
 
 	function hideAll(){
@@ -97,6 +99,8 @@
 
 		selectCard(e.detail.index)
 		checkIfMatching();
+
+		if(theyWon()) end();
 	}
 
 	function handleTimesUp(){
@@ -127,6 +131,12 @@
 		}
 
 		return matching;
+	}
+
+	function theyWon(){
+		if(matches == totalCards/2) return true;
+
+		return false;
 	}
 
 	function collectWinnings() {
@@ -190,6 +200,9 @@
 			/>
 		{/each}
 		<Timer on:timesUp={handleTimesUp} bind:this={timer} x="450" y="35" duration={duration} />
+		{#if ((gameOver && started) || (matches == totalCards/2))}
+		<Bumper message={matches == totalCards/2 ? 1 : 0}/>
+		{/if}
 	</svg>
 
 	<div 
