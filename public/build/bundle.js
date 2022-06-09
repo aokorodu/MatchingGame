@@ -6819,12 +6819,12 @@ var app = (function () {
     	let card;
     	let index = /*index*/ ctx[46];
     	let current;
-    	const assign_card = () => /*card_binding*/ ctx[22](card, index);
-    	const unassign_card = () => /*card_binding*/ ctx[22](null, index);
+    	const assign_card = () => /*card_binding*/ ctx[24](card, index);
+    	const unassign_card = () => /*card_binding*/ ctx[24](null, index);
 
     	let card_props = {
     		x: 25 + /*index*/ ctx[46] * .5,
-    		y: /*h*/ ctx[13] / 2 - /*index*/ ctx[46] * .5,
+    		y: /*h*/ ctx[15] / 2 - /*index*/ ctx[46] * .5,
     		w: /*cardWidth*/ ctx[0],
     		h: /*cardHeight*/ ctx[1],
     		index: /*index*/ ctx[46],
@@ -6833,7 +6833,7 @@ var app = (function () {
 
     	card = new Card({ props: card_props, $$inline: true });
     	assign_card();
-    	card.$on("cardClick", /*handleCardClick*/ ctx[16]);
+    	card.$on("cardClick", /*handleCardClick*/ ctx[18]);
 
     	const block = {
     		c: function create() {
@@ -6881,6 +6881,56 @@ var app = (function () {
     	return block;
     }
 
+    // (203:2) {#if ((gameOver && started) || (matches == totalCards/2))}
+    function create_if_block(ctx) {
+    	let bumper;
+    	let current;
+
+    	bumper = new Bumper({
+    			props: {
+    				message: /*matches*/ ctx[7] == /*totalCards*/ ctx[16] / 2 ? 1 : 0
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(bumper.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(bumper, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const bumper_changes = {};
+    			if (dirty[0] & /*matches*/ 128) bumper_changes.message = /*matches*/ ctx[7] == /*totalCards*/ ctx[16] / 2 ? 1 : 0;
+    			bumper.$set(bumper_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(bumper.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(bumper.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(bumper, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(203:2) {#if ((gameOver && started) || (matches == totalCards/2))}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment(ctx) {
     	let main;
     	let div0;
@@ -6896,13 +6946,12 @@ var app = (function () {
     	let g;
     	let each_1_anchor;
     	let timer_1;
-    	let bumper;
     	let t5;
     	let div1;
     	let current;
     	let mounted;
     	let dispose;
-    	let each_value = /*symbols*/ ctx[15];
+    	let each_value = /*symbols*/ ctx[17];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -6921,15 +6970,9 @@ var app = (function () {
     	};
 
     	timer_1 = new Timer({ props: timer_1_props, $$inline: true });
-    	/*timer_1_binding*/ ctx[23](timer_1);
-    	timer_1.$on("timesUp", /*handleTimesUp*/ ctx[17]);
-
-    	bumper = new Bumper({
-    			props: {
-    				message: /*matches*/ ctx[7] == /*totalCards*/ ctx[14] / 2 ? 1 : 0
-    			},
-    			$$inline: true
-    		});
+    	/*timer_1_binding*/ ctx[25](timer_1);
+    	timer_1.$on("timesUp", /*handleTimesUp*/ ctx[19]);
+    	let if_block = (/*gameOver*/ ctx[11] && /*started*/ ctx[9] || /*matches*/ ctx[7] == /*totalCards*/ ctx[16] / 2) && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -6952,7 +6995,7 @@ var app = (function () {
 
     			each_1_anchor = empty();
     			create_component(timer_1.$$.fragment);
-    			create_component(bumper.$$.fragment);
+    			if (if_block) if_block.c();
     			t5 = space();
     			div1 = element("div");
     			div1.textContent = "START";
@@ -6969,13 +7012,13 @@ var app = (function () {
     			attr_dev(rect, "fill", "#212121");
     			add_location(rect, file, 187, 2, 3742);
     			add_location(g, file, 188, 2, 3808);
-    			attr_dev(svg_1, "width", /*svgWidth*/ ctx[10]);
-    			attr_dev(svg_1, "height", /*svgHeight*/ ctx[11]);
-    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[12] + " " + /*h*/ ctx[13]);
+    			attr_dev(svg_1, "width", /*svgWidth*/ ctx[12]);
+    			attr_dev(svg_1, "height", /*svgHeight*/ ctx[13]);
+    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[14] + " " + /*h*/ ctx[15]);
     			attr_dev(svg_1, "class", "svelte-7z3ll9");
     			add_location(svg_1, file, 186, 1, 3660);
     			attr_dev(div1, "class", "deal-button svelte-7z3ll9");
-    			add_location(div1, file, 207, 1, 4327);
+    			add_location(div1, file, 207, 1, 4309);
     			attr_dev(main, "class", "svelte-7z3ll9");
     			add_location(main, file, 184, 0, 3549);
     		},
@@ -6995,7 +7038,7 @@ var app = (function () {
     			append_dev(main, svg_1);
     			append_dev(svg_1, rect);
     			append_dev(svg_1, g);
-    			/*g_binding*/ ctx[21](g);
+    			/*g_binding*/ ctx[23](g);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(svg_1, null);
@@ -7003,8 +7046,8 @@ var app = (function () {
 
     			append_dev(svg_1, each_1_anchor);
     			mount_component(timer_1, svg_1, null);
-    			mount_component(bumper, svg_1, null);
-    			/*svg_1_binding*/ ctx[24](svg_1);
+    			if (if_block) if_block.m(svg_1, null);
+    			/*svg_1_binding*/ ctx[26](svg_1);
     			append_dev(main, t5);
     			append_dev(main, div1);
     			current = true;
@@ -7018,8 +7061,8 @@ var app = (function () {
     			if (!current || dirty[0] & /*matches*/ 128) set_data_dev(t1, /*matches*/ ctx[7]);
     			if (!current || dirty[0] & /*noMatches*/ 256) set_data_dev(t3, /*noMatches*/ ctx[8]);
 
-    			if (dirty[0] & /*h, cardWidth, cardHeight, symbols, cardArray, handleCardClick*/ 106563) {
-    				each_value = /*symbols*/ ctx[15];
+    			if (dirty[0] & /*h, cardWidth, cardHeight, symbols, cardArray, handleCardClick*/ 426051) {
+    				each_value = /*symbols*/ ctx[17];
     				validate_each_argument(each_value);
     				let i;
 
@@ -7049,9 +7092,29 @@ var app = (function () {
     			const timer_1_changes = {};
     			if (dirty[0] & /*duration*/ 4) timer_1_changes.duration = /*duration*/ ctx[2];
     			timer_1.$set(timer_1_changes);
-    			const bumper_changes = {};
-    			if (dirty[0] & /*matches*/ 128) bumper_changes.message = /*matches*/ ctx[7] == /*totalCards*/ ctx[14] / 2 ? 1 : 0;
-    			bumper.$set(bumper_changes);
+
+    			if (/*gameOver*/ ctx[11] && /*started*/ ctx[9] || /*matches*/ ctx[7] == /*totalCards*/ ctx[16] / 2) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty[0] & /*gameOver, started, matches*/ 2688) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(svg_1, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -7061,7 +7124,7 @@ var app = (function () {
     			}
 
     			transition_in(timer_1.$$.fragment, local);
-    			transition_in(bumper.$$.fragment, local);
+    			transition_in(if_block);
     			current = true;
     		},
     		o: function outro(local) {
@@ -7072,17 +7135,17 @@ var app = (function () {
     			}
 
     			transition_out(timer_1.$$.fragment, local);
-    			transition_out(bumper.$$.fragment, local);
+    			transition_out(if_block);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			/*g_binding*/ ctx[21](null);
+    			/*g_binding*/ ctx[23](null);
     			destroy_each(each_blocks, detaching);
-    			/*timer_1_binding*/ ctx[23](null);
+    			/*timer_1_binding*/ ctx[25](null);
     			destroy_component(timer_1);
-    			destroy_component(bumper);
-    			/*svg_1_binding*/ ctx[24](null);
+    			if (if_block) if_block.d();
+    			/*svg_1_binding*/ ctx[26](null);
     			mounted = false;
     			dispose();
     		}
@@ -7142,7 +7205,7 @@ var app = (function () {
     	}
 
     	function start() {
-    		started = true;
+    		$$invalidate(9, started = true);
     		deal();
     		setTimeout(hideAll, totalCards * 100);
     		setTimeout(shuffle, totalCards * 150);
@@ -7151,12 +7214,12 @@ var app = (function () {
 
     	function begin() {
     		console.log('begin');
-    		gameOver = false;
+    		$$invalidate(11, gameOver = false);
     	}
 
     	function end() {
     		console.log('end');
-    		gameOver = true;
+    		$$invalidate(11, gameOver = true);
     		timer.stop();
     	}
 
@@ -7296,7 +7359,7 @@ var app = (function () {
     	function timer_1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			timer = $$value;
-    			$$invalidate(9, timer);
+    			$$invalidate(10, timer);
     		});
     	}
 
@@ -7308,8 +7371,8 @@ var app = (function () {
     	}
 
     	$$self.$$set = $$props => {
-    		if ('rows' in $$props) $$invalidate(18, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(19, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(20, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(21, columns = $$props.columns);
     		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
     		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
     		if ('duration' in $$props) $$invalidate(2, duration = $$props.duration);
@@ -7364,28 +7427,28 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ('svg' in $$props) $$invalidate(4, svg = $$props.svg);
     		if ('cardHolder' in $$props) $$invalidate(5, cardHolder = $$props.cardHolder);
-    		if ('svgWidth' in $$props) $$invalidate(10, svgWidth = $$props.svgWidth);
-    		if ('svgHeight' in $$props) $$invalidate(11, svgHeight = $$props.svgHeight);
-    		if ('w' in $$props) $$invalidate(12, w = $$props.w);
-    		if ('h' in $$props) $$invalidate(13, h = $$props.h);
+    		if ('svgWidth' in $$props) $$invalidate(12, svgWidth = $$props.svgWidth);
+    		if ('svgHeight' in $$props) $$invalidate(13, svgHeight = $$props.svgHeight);
+    		if ('w' in $$props) $$invalidate(14, w = $$props.w);
+    		if ('h' in $$props) $$invalidate(15, h = $$props.h);
     		if ('gap' in $$props) gap = $$props.gap;
-    		if ('rows' in $$props) $$invalidate(18, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(19, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(20, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(21, columns = $$props.columns);
     		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
     		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
     		if ('duration' in $$props) $$invalidate(2, duration = $$props.duration);
     		if ('rowWidth' in $$props) rowWidth = $$props.rowWidth;
     		if ('columnHeight' in $$props) columnHeight = $$props.columnHeight;
-    		if ('totalCards' in $$props) $$invalidate(14, totalCards = $$props.totalCards);
+    		if ('totalCards' in $$props) $$invalidate(16, totalCards = $$props.totalCards);
     		if ('str' in $$props) str = $$props.str;
-    		if ('symbols' in $$props) $$invalidate(15, symbols = $$props.symbols);
+    		if ('symbols' in $$props) $$invalidate(17, symbols = $$props.symbols);
     		if ('cardArray' in $$props) $$invalidate(6, cardArray = $$props.cardArray);
     		if ('selectedCards' in $$props) selectedCards = $$props.selectedCards;
     		if ('matches' in $$props) $$invalidate(7, matches = $$props.matches);
     		if ('noMatches' in $$props) $$invalidate(8, noMatches = $$props.noMatches);
-    		if ('started' in $$props) started = $$props.started;
-    		if ('timer' in $$props) $$invalidate(9, timer = $$props.timer);
-    		if ('gameOver' in $$props) gameOver = $$props.gameOver;
+    		if ('started' in $$props) $$invalidate(9, started = $$props.started);
+    		if ('timer' in $$props) $$invalidate(10, timer = $$props.timer);
+    		if ('gameOver' in $$props) $$invalidate(11, gameOver = $$props.gameOver);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -7402,7 +7465,9 @@ var app = (function () {
     		cardArray,
     		matches,
     		noMatches,
+    		started,
     		timer,
+    		gameOver,
     		svgWidth,
     		svgHeight,
     		w,
@@ -7432,12 +7497,12 @@ var app = (function () {
     			create_fragment,
     			safe_not_equal,
     			{
-    				rows: 18,
-    				columns: 19,
+    				rows: 20,
+    				columns: 21,
     				cardWidth: 0,
     				cardHeight: 1,
     				duration: 2,
-    				init: 20,
+    				init: 22,
     				handleStartClick: 3
     			},
     			null,
@@ -7454,11 +7519,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*rows*/ ctx[18] === undefined && !('rows' in props)) {
+    		if (/*rows*/ ctx[20] === undefined && !('rows' in props)) {
     			console_1.warn("<App> was created without expected prop 'rows'");
     		}
 
-    		if (/*columns*/ ctx[19] === undefined && !('columns' in props)) {
+    		if (/*columns*/ ctx[21] === undefined && !('columns' in props)) {
     			console_1.warn("<App> was created without expected prop 'columns'");
     		}
     	}
@@ -7504,7 +7569,7 @@ var app = (function () {
     	}
 
     	get init() {
-    		return this.$$.ctx[20];
+    		return this.$$.ctx[22];
     	}
 
     	set init(value) {

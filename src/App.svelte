@@ -200,9 +200,9 @@
 			/>
 		{/each}
 		<Timer on:timesUp={handleTimesUp} bind:this={timer} x="450" y="35" duration={duration} />
-		<!-- {#if ((gameOver && started) || (matches == totalCards/2))} -->
+		{#if ((gameOver && started) || (matches == totalCards/2))}
 		<Bumper message={matches == totalCards/2 ? 1 : 0}/>
-		<!-- {/if} -->
+		{/if}
 	</svg>
 
 	<div 
