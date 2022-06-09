@@ -5,8 +5,8 @@ const app = new App({
 	props: {
 		rows: 4,
 		columns: 4,
-		cardWidth: 60,
-		cardHeight: 60,
+		cardWidth: 70,
+		cardHeight: 70,
 		duration: 30
 	}
 });

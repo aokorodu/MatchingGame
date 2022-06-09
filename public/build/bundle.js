@@ -5943,7 +5943,8 @@ var app = (function () {
     const file$3 = "src/Card.svelte";
 
     function create_fragment$3(ctx) {
-    	let g;
+    	let g1;
+    	let g0;
     	let rect0;
     	let rect0_x_value;
     	let rect0_y_value;
@@ -5952,21 +5953,18 @@ var app = (function () {
     	let rect1;
     	let rect1_x_value;
     	let rect1_y_value;
-    	let rect2;
-    	let rect2_x_value;
-    	let rect2_y_value;
-    	let g_transform_value;
+    	let g1_transform_value;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			g = svg_element("g");
+    			g1 = svg_element("g");
+    			g0 = svg_element("g");
     			rect0 = svg_element("rect");
     			text_1 = svg_element("text");
     			t = text(/*symbol*/ ctx[0]);
     			rect1 = svg_element("rect");
-    			rect2 = svg_element("rect");
     			attr_dev(rect0, "x", rect0_x_value = -/*w*/ ctx[1] / 2);
     			attr_dev(rect0, "y", rect0_y_value = -/*h*/ ctx[2] / 2);
     			attr_dev(rect0, "width", /*w*/ ctx[1]);
@@ -5976,7 +5974,7 @@ var app = (function () {
     			attr_dev(rect0, "fill", "#fafafa");
     			attr_dev(rect0, "stroke", "#212121");
     			attr_dev(rect0, "stroke-width", "2");
-    			add_location(rect0, file$3, 86, 2, 1451);
+    			add_location(rect0, file$3, 87, 2, 1473);
     			attr_dev(text_1, "x", "0");
     			attr_dev(text_1, "y", "0");
     			attr_dev(text_1, "fill", "#212121");
@@ -5985,8 +5983,8 @@ var app = (function () {
     			attr_dev(text_1, "font-weight", "900");
     			attr_dev(text_1, "dominant-baseline", "middle");
     			attr_dev(text_1, "text-anchor", "middle");
-    			attr_dev(text_1, "class", "svelte-ka21ck");
-    			add_location(text_1, file$3, 99, 2, 1612);
+    			attr_dev(text_1, "class", "svelte-19k0i6g");
+    			add_location(text_1, file$3, 99, 2, 1631);
     			attr_dev(rect1, "id", "face");
     			attr_dev(rect1, "x", rect1_x_value = -/*w*/ ctx[1] / 2);
     			attr_dev(rect1, "y", rect1_y_value = -/*h*/ ctx[2] / 2);
@@ -5997,33 +5995,28 @@ var app = (function () {
     			attr_dev(rect1, "fill", "#288DDD");
     			attr_dev(rect1, "opacity", "0");
     			attr_dev(rect1, "stroke", "black");
-    			add_location(rect1, file$3, 110, 2, 1794);
-    			attr_dev(rect2, "id", "hitarea");
-    			attr_dev(rect2, "x", rect2_x_value = -/*w*/ ctx[1] / 2);
-    			attr_dev(rect2, "y", rect2_y_value = -/*h*/ ctx[2] / 2);
-    			attr_dev(rect2, "width", /*w*/ ctx[1]);
-    			attr_dev(rect2, "height", /*h*/ ctx[2]);
-    			attr_dev(rect2, "fill", "#288DDD");
-    			attr_dev(rect2, "fill-opacity", "0");
-    			add_location(rect2, file$3, 124, 2, 1978);
-    			attr_dev(g, "transform", g_transform_value = "translate(" + (parseInt(/*position*/ ctx[5].x) + /*w*/ ctx[1] / 2) + ", " + parseInt(/*position*/ ctx[5].y + /*h*/ ctx[2] / 2) + ")");
-    			add_location(g, file$3, 80, 0, 1327);
+    			add_location(rect1, file$3, 110, 2, 1813);
+    			attr_dev(g0, "id", "holder_2");
+    			attr_dev(g0, "class", "svelte-19k0i6g");
+    			add_location(g0, file$3, 86, 0, 1453);
+    			attr_dev(g1, "transform", g1_transform_value = "translate(" + (parseInt(/*position*/ ctx[5].x) + /*w*/ ctx[1] / 2) + ", " + parseInt(/*position*/ ctx[5].y + /*h*/ ctx[2] / 2) + ")");
+    			add_location(g1, file$3, 80, 0, 1331);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, g, anchor);
-    			append_dev(g, rect0);
-    			append_dev(g, text_1);
+    			insert_dev(target, g1, anchor);
+    			append_dev(g1, g0);
+    			append_dev(g0, rect0);
+    			append_dev(g0, text_1);
     			append_dev(text_1, t);
-    			append_dev(g, rect1);
+    			append_dev(g0, rect1);
     			/*rect1_binding*/ ctx[15](rect1);
-    			append_dev(g, rect2);
-    			/*g_binding*/ ctx[16](g);
+    			/*g1_binding*/ ctx[16](g1);
 
     			if (!mounted) {
-    				dispose = listen_dev(rect2, "click", /*clickhandler*/ ctx[6], false, false, false);
+    				dispose = listen_dev(rect1, "click", /*clickhandler*/ ctx[6], false, false, false);
     				mounted = true;
     			}
     		},
@@ -6062,32 +6055,16 @@ var app = (function () {
     				attr_dev(rect1, "height", /*h*/ ctx[2]);
     			}
 
-    			if (dirty & /*w*/ 2 && rect2_x_value !== (rect2_x_value = -/*w*/ ctx[1] / 2)) {
-    				attr_dev(rect2, "x", rect2_x_value);
-    			}
-
-    			if (dirty & /*h*/ 4 && rect2_y_value !== (rect2_y_value = -/*h*/ ctx[2] / 2)) {
-    				attr_dev(rect2, "y", rect2_y_value);
-    			}
-
-    			if (dirty & /*w*/ 2) {
-    				attr_dev(rect2, "width", /*w*/ ctx[1]);
-    			}
-
-    			if (dirty & /*h*/ 4) {
-    				attr_dev(rect2, "height", /*h*/ ctx[2]);
-    			}
-
-    			if (dirty & /*position, w, h*/ 38 && g_transform_value !== (g_transform_value = "translate(" + (parseInt(/*position*/ ctx[5].x) + /*w*/ ctx[1] / 2) + ", " + parseInt(/*position*/ ctx[5].y + /*h*/ ctx[2] / 2) + ")")) {
-    				attr_dev(g, "transform", g_transform_value);
+    			if (dirty & /*position, w, h*/ 38 && g1_transform_value !== (g1_transform_value = "translate(" + (parseInt(/*position*/ ctx[5].x) + /*w*/ ctx[1] / 2) + ", " + parseInt(/*position*/ ctx[5].y + /*h*/ ctx[2] / 2) + ")")) {
+    				attr_dev(g1, "transform", g1_transform_value);
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(g);
+    			if (detaching) detach_dev(g1);
     			/*rect1_binding*/ ctx[15](null);
-    			/*g_binding*/ ctx[16](null);
+    			/*g1_binding*/ ctx[16](null);
     			mounted = false;
     			dispose();
     		}
@@ -6104,7 +6081,7 @@ var app = (function () {
     	return block;
     }
 
-    const fadeDuration = .3;
+    const fadeDuration = 0.3;
 
     function instance$3($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
@@ -6128,11 +6105,11 @@ var app = (function () {
 
     	function move(newX, newY, delay = 0) {
     		gsapWithCSS.to(position, {
-    			duration: .75,
+    			duration: 0.67,
     			x: newX,
     			y: newY,
     			delay,
-    			ease: "power2.inOut",
+    			ease: "power4.inOut",
     			onUpdate: () => {
     				$$invalidate(5, position);
     			}
@@ -6187,7 +6164,7 @@ var app = (function () {
     		});
     	}
 
-    	function g_binding($$value) {
+    	function g1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			holder = $$value;
     			$$invalidate(3, holder);
@@ -6260,7 +6237,7 @@ var app = (function () {
     		hide,
     		lock,
     		rect1_binding,
-    		g_binding
+    		g1_binding
     	];
     }
 
@@ -6814,7 +6791,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (190:2) {#each symbols as symbol, index}
+    // (199:2) {#each symbols as symbol, index}
     function create_each_block(ctx) {
     	let card;
     	let index = /*index*/ ctx[46];
@@ -6874,14 +6851,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(190:2) {#each symbols as symbol, index}",
+    		source: "(199:2) {#each symbols as symbol, index}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (203:2) {#if ((gameOver && started) || (matches == totalCards/2))}
+    // (212:2) {#if ((gameOver && started) || (matches == totalCards/2))}
     function create_if_block(ctx) {
     	let bumper;
     	let current;
@@ -6924,7 +6901,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(203:2) {#if ((gameOver && started) || (matches == totalCards/2))}",
+    		source: "(212:2) {#if ((gameOver && started) || (matches == totalCards/2))}",
     		ctx
     	});
 
@@ -6943,10 +6920,12 @@ var app = (function () {
     	let t4;
     	let svg_1;
     	let rect;
+    	let text_1;
+    	let t5;
     	let g;
     	let each_1_anchor;
     	let timer_1;
-    	let t5;
+    	let t6;
     	let div1;
     	let current;
     	let mounted;
@@ -6987,6 +6966,8 @@ var app = (function () {
     			t4 = space();
     			svg_1 = svg_element("svg");
     			rect = svg_element("rect");
+    			text_1 = svg_element("text");
+    			t5 = text("Cataboom");
     			g = svg_element("g");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -6996,31 +6977,41 @@ var app = (function () {
     			each_1_anchor = empty();
     			create_component(timer_1.$$.fragment);
     			if (if_block) if_block.c();
-    			t5 = space();
+    			t6 = space();
     			div1 = element("div");
     			div1.textContent = "START";
     			attr_dev(span0, "class", "svelte-7z3ll9");
-    			add_location(span0, file, 185, 34, 3590);
+    			add_location(span0, file, 185, 34, 3595);
     			attr_dev(span1, "class", "svelte-7z3ll9");
-    			add_location(span1, file, 185, 72, 3628);
+    			add_location(span1, file, 185, 72, 3633);
     			attr_dev(div0, "class", "scorecard svelte-7z3ll9");
-    			add_location(div0, file, 185, 1, 3557);
-    			attr_dev(rect, "x", "-50");
+    			add_location(div0, file, 185, 1, 3562);
+    			attr_dev(rect, "x", "0");
     			attr_dev(rect, "y", "490");
-    			attr_dev(rect, "width", "600");
+    			attr_dev(rect, "width", "500");
     			attr_dev(rect, "height", "10");
     			attr_dev(rect, "fill", "#212121");
-    			add_location(rect, file, 187, 2, 3742);
-    			add_location(g, file, 188, 2, 3808);
+    			add_location(rect, file, 187, 2, 3747);
+    			attr_dev(text_1, "x", "250");
+    			attr_dev(text_1, "y", "250");
+    			attr_dev(text_1, "font-size", "200");
+    			attr_dev(text_1, "font-weight", "900");
+    			attr_dev(text_1, "text-anchor", "middle");
+    			attr_dev(text_1, "dominant-baseline", "middle");
+    			attr_dev(text_1, "fill", "lightblue");
+    			attr_dev(text_1, "fill-opacity", ".15");
+    			attr_dev(text_1, "stroke", "none");
+    			add_location(text_1, file, 188, 2, 3811);
+    			add_location(g, file, 197, 2, 4012);
     			attr_dev(svg_1, "width", /*svgWidth*/ ctx[12]);
     			attr_dev(svg_1, "height", /*svgHeight*/ ctx[13]);
     			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[14] + " " + /*h*/ ctx[15]);
     			attr_dev(svg_1, "class", "svelte-7z3ll9");
-    			add_location(svg_1, file, 186, 1, 3660);
+    			add_location(svg_1, file, 186, 1, 3665);
     			attr_dev(div1, "class", "deal-button svelte-7z3ll9");
-    			add_location(div1, file, 207, 1, 4309);
+    			add_location(div1, file, 216, 1, 4513);
     			attr_dev(main, "class", "svelte-7z3ll9");
-    			add_location(main, file, 184, 0, 3549);
+    			add_location(main, file, 184, 0, 3554);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7037,6 +7028,8 @@ var app = (function () {
     			append_dev(main, t4);
     			append_dev(main, svg_1);
     			append_dev(svg_1, rect);
+    			append_dev(svg_1, text_1);
+    			append_dev(text_1, t5);
     			append_dev(svg_1, g);
     			/*g_binding*/ ctx[23](g);
 
@@ -7048,7 +7041,7 @@ var app = (function () {
     			mount_component(timer_1, svg_1, null);
     			if (if_block) if_block.m(svg_1, null);
     			/*svg_1_binding*/ ctx[26](svg_1);
-    			append_dev(main, t5);
+    			append_dev(main, t6);
     			append_dev(main, div1);
     			current = true;
 
@@ -7332,7 +7325,7 @@ var app = (function () {
     			let col = i % columns;
     			let row = Math.floor(i / columns);
     			const index = indexArray[i];
-    			cardArray[index].move(startX + row * (cardWidth + gap), startY + col * (cardHeight + gap), Math.random());
+    			cardArray[index].move(startX + row * (cardWidth + gap), startY + col * (cardHeight + gap), Math.random() * .1);
     		}
     	}
 
@@ -7590,8 +7583,8 @@ var app = (function () {
     	props: {
     		rows: 4,
     		columns: 4,
-    		cardWidth: 60,
-    		cardHeight: 60,
+    		cardWidth: 70,
+    		cardHeight: 70,
     		duration: 30
     	}
     });

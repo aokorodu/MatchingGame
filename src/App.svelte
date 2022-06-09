@@ -176,7 +176,7 @@
 			cardArray[index].move(
 				startX + row * (cardWidth + gap),
 				startY + col * (cardHeight + gap),
-				Math.random()
+				Math.random() * .1
 			);
 		}
 	}
@@ -185,7 +185,16 @@
 <main>
 	<div class="scorecard">	MATCHES: <span>{matches}</span> WRONG GUESSES: <span>{noMatches}</span></div>
 	<svg bind:this={svg} width={svgWidth} height={svgHeight} viewBox="0 0 {w} {h}">
-		<rect x="-50" y="490" width="600" height="10" fill="#212121" />
+		<rect x="0" y="490" width="500" height="10" fill="#212121" />
+		<text 
+			x="250" y="250" 
+			font-size="200"
+    	font-weight="900"
+			text-anchor="middle"
+			dominant-baseline="middle"
+			fill="lightblue" 
+			fill-opacity=".15"
+			stroke="none">Cataboom</text>
 		<g bind:this={cardHolder} />
 		{#each symbols as symbol, index}
 			<Card

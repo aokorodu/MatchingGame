@@ -23,15 +23,15 @@
     locked: false,
   };
 
-  const fadeDuration = .3;
+  const fadeDuration = 0.3;
 
   export function move(newX, newY, delay = 0) {
     gsap.to(position, {
-      duration: .75,
+      duration: 0.67,
       x: newX,
       y: newY,
       delay: delay,
-      ease:"power2.inOut",
+      ease: "power4.inOut",
       onUpdate: () => {
         position = position;
       },
@@ -43,7 +43,7 @@
   }
 
   export function show(delay = 0) {
-   state.selected = true;
+    state.selected = true;
 
     gsap.to(face, {
       duration: fadeDuration,
@@ -84,6 +84,7 @@
     position.y + h / 2
   )})"
 >
+<g id="holder_2">
   <rect
     x={-w / 2}
     y={-h / 2}
@@ -96,7 +97,6 @@
     stroke-width="2"
   />
 
-  
   <text
     x="0"
     y="0"
@@ -110,6 +110,7 @@
 
   <rect
     bind:this={face}
+    on:click={clickhandler}
     id="face"
     x={-w / 2}
     y={-h / 2}
@@ -118,11 +119,11 @@
     width={w}
     height={h}
     fill="#288DDD"
-    opacity=0
+    opacity="0"
     stroke="black"
   />
 
-  <rect
+  <!-- <rect
     on:click={clickhandler}
     id="hitarea"
     x={-w / 2}
@@ -131,7 +132,8 @@
     height={h}
     fill="#288DDD"
     fill-opacity="0"
-  />
+  /> -->
+</g>
 </g>
 
 <style>
@@ -143,5 +145,16 @@
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
+  }
+
+  #holder_2 {
+    transform: scale(1);
+    transition-property: transform;
+    transition-duration: 333ms;
+    transition-timing-function: ease-out;
+  }
+
+  #holder_2:hover {
+    transform: scale(1.1);
   }
 </style>
