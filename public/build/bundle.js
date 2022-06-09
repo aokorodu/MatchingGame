@@ -5942,10 +5942,16 @@ var app = (function () {
     function create_fragment$2(ctx) {
     	let g;
     	let rect0;
+    	let rect0_x_value;
+    	let rect0_y_value;
     	let text_1;
     	let t;
     	let rect1;
+    	let rect1_x_value;
+    	let rect1_y_value;
     	let rect2;
+    	let rect2_x_value;
+    	let rect2_y_value;
     	let g_transform_value;
     	let mounted;
     	let dispose;
@@ -5958,16 +5964,16 @@ var app = (function () {
     			t = text(/*symbol*/ ctx[0]);
     			rect1 = svg_element("rect");
     			rect2 = svg_element("rect");
-    			attr_dev(rect0, "x", -/*w*/ ctx[4] / 2);
-    			attr_dev(rect0, "y", -/*h*/ ctx[5] / 2);
-    			attr_dev(rect0, "width", /*w*/ ctx[4]);
-    			attr_dev(rect0, "height", /*h*/ ctx[5]);
+    			attr_dev(rect0, "x", rect0_x_value = -/*w*/ ctx[1] / 2);
+    			attr_dev(rect0, "y", rect0_y_value = -/*h*/ ctx[2] / 2);
+    			attr_dev(rect0, "width", /*w*/ ctx[1]);
+    			attr_dev(rect0, "height", /*h*/ ctx[2]);
     			attr_dev(rect0, "rx", "10");
     			attr_dev(rect0, "ry", "10");
     			attr_dev(rect0, "fill", "#fafafa");
     			attr_dev(rect0, "stroke", "#212121");
     			attr_dev(rect0, "stroke-width", "2");
-    			add_location(rect0, file$2, 86, 2, 1437);
+    			add_location(rect0, file$2, 86, 2, 1451);
     			attr_dev(text_1, "x", "0");
     			attr_dev(text_1, "y", "0");
     			attr_dev(text_1, "fill", "#212121");
@@ -5977,28 +5983,28 @@ var app = (function () {
     			attr_dev(text_1, "dominant-baseline", "middle");
     			attr_dev(text_1, "text-anchor", "middle");
     			attr_dev(text_1, "class", "svelte-ka21ck");
-    			add_location(text_1, file$2, 99, 2, 1598);
+    			add_location(text_1, file$2, 99, 2, 1612);
     			attr_dev(rect1, "id", "face");
-    			attr_dev(rect1, "x", -/*w*/ ctx[4] / 2);
-    			attr_dev(rect1, "y", -/*h*/ ctx[5] / 2);
+    			attr_dev(rect1, "x", rect1_x_value = -/*w*/ ctx[1] / 2);
+    			attr_dev(rect1, "y", rect1_y_value = -/*h*/ ctx[2] / 2);
     			attr_dev(rect1, "rx", "10");
     			attr_dev(rect1, "ry", "10");
-    			attr_dev(rect1, "width", /*w*/ ctx[4]);
-    			attr_dev(rect1, "height", /*h*/ ctx[5]);
+    			attr_dev(rect1, "width", /*w*/ ctx[1]);
+    			attr_dev(rect1, "height", /*h*/ ctx[2]);
     			attr_dev(rect1, "fill", "#288DDD");
     			attr_dev(rect1, "opacity", "0");
     			attr_dev(rect1, "stroke", "black");
-    			add_location(rect1, file$2, 110, 2, 1780);
+    			add_location(rect1, file$2, 110, 2, 1794);
     			attr_dev(rect2, "id", "hitarea");
-    			attr_dev(rect2, "x", -/*w*/ ctx[4] / 2);
-    			attr_dev(rect2, "y", -/*h*/ ctx[5] / 2);
-    			attr_dev(rect2, "width", /*w*/ ctx[4]);
-    			attr_dev(rect2, "height", /*h*/ ctx[5]);
+    			attr_dev(rect2, "x", rect2_x_value = -/*w*/ ctx[1] / 2);
+    			attr_dev(rect2, "y", rect2_y_value = -/*h*/ ctx[2] / 2);
+    			attr_dev(rect2, "width", /*w*/ ctx[1]);
+    			attr_dev(rect2, "height", /*h*/ ctx[2]);
     			attr_dev(rect2, "fill", "#288DDD");
     			attr_dev(rect2, "fill-opacity", "0");
-    			add_location(rect2, file$2, 124, 2, 1964);
-    			attr_dev(g, "transform", g_transform_value = "translate(" + (parseInt(/*position*/ ctx[3].x) + /*w*/ ctx[4] / 2) + ", " + parseInt(/*position*/ ctx[3].y + /*h*/ ctx[5] / 2) + ")");
-    			add_location(g, file$2, 80, 0, 1313);
+    			add_location(rect2, file$2, 124, 2, 1978);
+    			attr_dev(g, "transform", g_transform_value = "translate(" + (parseInt(/*position*/ ctx[5].x) + /*w*/ ctx[1] / 2) + ", " + parseInt(/*position*/ ctx[5].y + /*h*/ ctx[2] / 2) + ")");
+    			add_location(g, file$2, 80, 0, 1327);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6019,9 +6025,57 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*w*/ 2 && rect0_x_value !== (rect0_x_value = -/*w*/ ctx[1] / 2)) {
+    				attr_dev(rect0, "x", rect0_x_value);
+    			}
+
+    			if (dirty & /*h*/ 4 && rect0_y_value !== (rect0_y_value = -/*h*/ ctx[2] / 2)) {
+    				attr_dev(rect0, "y", rect0_y_value);
+    			}
+
+    			if (dirty & /*w*/ 2) {
+    				attr_dev(rect0, "width", /*w*/ ctx[1]);
+    			}
+
+    			if (dirty & /*h*/ 4) {
+    				attr_dev(rect0, "height", /*h*/ ctx[2]);
+    			}
+
     			if (dirty & /*symbol*/ 1) set_data_dev(t, /*symbol*/ ctx[0]);
 
-    			if (dirty & /*position*/ 8 && g_transform_value !== (g_transform_value = "translate(" + (parseInt(/*position*/ ctx[3].x) + /*w*/ ctx[4] / 2) + ", " + parseInt(/*position*/ ctx[3].y + /*h*/ ctx[5] / 2) + ")")) {
+    			if (dirty & /*w*/ 2 && rect1_x_value !== (rect1_x_value = -/*w*/ ctx[1] / 2)) {
+    				attr_dev(rect1, "x", rect1_x_value);
+    			}
+
+    			if (dirty & /*h*/ 4 && rect1_y_value !== (rect1_y_value = -/*h*/ ctx[2] / 2)) {
+    				attr_dev(rect1, "y", rect1_y_value);
+    			}
+
+    			if (dirty & /*w*/ 2) {
+    				attr_dev(rect1, "width", /*w*/ ctx[1]);
+    			}
+
+    			if (dirty & /*h*/ 4) {
+    				attr_dev(rect1, "height", /*h*/ ctx[2]);
+    			}
+
+    			if (dirty & /*w*/ 2 && rect2_x_value !== (rect2_x_value = -/*w*/ ctx[1] / 2)) {
+    				attr_dev(rect2, "x", rect2_x_value);
+    			}
+
+    			if (dirty & /*h*/ 4 && rect2_y_value !== (rect2_y_value = -/*h*/ ctx[2] / 2)) {
+    				attr_dev(rect2, "y", rect2_y_value);
+    			}
+
+    			if (dirty & /*w*/ 2) {
+    				attr_dev(rect2, "width", /*w*/ ctx[1]);
+    			}
+
+    			if (dirty & /*h*/ 4) {
+    				attr_dev(rect2, "height", /*h*/ ctx[2]);
+    			}
+
+    			if (dirty & /*position, w, h*/ 38 && g_transform_value !== (g_transform_value = "translate(" + (parseInt(/*position*/ ctx[5].x) + /*w*/ ctx[1] / 2) + ", " + parseInt(/*position*/ ctx[5].y + /*h*/ ctx[2] / 2) + ")")) {
     				attr_dev(g, "transform", g_transform_value);
     			}
     		},
@@ -6058,10 +6112,10 @@ var app = (function () {
     	let { symbol = "A" } = $$props;
     	let { x } = $$props;
     	let { y } = $$props;
+    	let { w = 50 } = $$props;
+    	let { h = 50 } = $$props;
     	let { index } = $$props;
     	let position = { x, y };
-    	let w = 50;
-    	let h = 50;
 
     	let state = {
     		showing: false,
@@ -6077,7 +6131,7 @@ var app = (function () {
     			delay,
     			ease: "power2.inOut",
     			onUpdate: () => {
-    				$$invalidate(3, position);
+    				$$invalidate(5, position);
     			}
     		});
     	}
@@ -6117,7 +6171,7 @@ var app = (function () {
     		dispatch("cardClick", { index, symb: symbol });
     	}
 
-    	const writable_props = ['symbol', 'x', 'y', 'index'];
+    	const writable_props = ['symbol', 'x', 'y', 'w', 'h', 'index'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Card> was created with unknown prop '${key}'`);
@@ -6126,14 +6180,14 @@ var app = (function () {
     	function rect1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			face = $$value;
-    			$$invalidate(2, face);
+    			$$invalidate(4, face);
     		});
     	}
 
     	function g_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			holder = $$value;
-    			$$invalidate(1, holder);
+    			$$invalidate(3, holder);
     		});
     	}
 
@@ -6141,6 +6195,8 @@ var app = (function () {
     		if ('symbol' in $$props) $$invalidate(0, symbol = $$props.symbol);
     		if ('x' in $$props) $$invalidate(7, x = $$props.x);
     		if ('y' in $$props) $$invalidate(8, y = $$props.y);
+    		if ('w' in $$props) $$invalidate(1, w = $$props.w);
+    		if ('h' in $$props) $$invalidate(2, h = $$props.h);
     		if ('index' in $$props) $$invalidate(9, index = $$props.index);
     	};
 
@@ -6153,10 +6209,10 @@ var app = (function () {
     		symbol,
     		x,
     		y,
-    		index,
-    		position,
     		w,
     		h,
+    		index,
+    		position,
     		state,
     		fadeDuration,
     		move,
@@ -6168,15 +6224,15 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('holder' in $$props) $$invalidate(1, holder = $$props.holder);
-    		if ('face' in $$props) $$invalidate(2, face = $$props.face);
+    		if ('holder' in $$props) $$invalidate(3, holder = $$props.holder);
+    		if ('face' in $$props) $$invalidate(4, face = $$props.face);
     		if ('symbol' in $$props) $$invalidate(0, symbol = $$props.symbol);
     		if ('x' in $$props) $$invalidate(7, x = $$props.x);
     		if ('y' in $$props) $$invalidate(8, y = $$props.y);
+    		if ('w' in $$props) $$invalidate(1, w = $$props.w);
+    		if ('h' in $$props) $$invalidate(2, h = $$props.h);
     		if ('index' in $$props) $$invalidate(9, index = $$props.index);
-    		if ('position' in $$props) $$invalidate(3, position = $$props.position);
-    		if ('w' in $$props) $$invalidate(4, w = $$props.w);
-    		if ('h' in $$props) $$invalidate(5, h = $$props.h);
+    		if ('position' in $$props) $$invalidate(5, position = $$props.position);
     		if ('state' in $$props) state = $$props.state;
     	};
 
@@ -6186,11 +6242,11 @@ var app = (function () {
 
     	return [
     		symbol,
+    		w,
+    		h,
     		holder,
     		face,
     		position,
-    		w,
-    		h,
     		clickhandler,
     		x,
     		y,
@@ -6213,6 +6269,8 @@ var app = (function () {
     			symbol: 0,
     			x: 7,
     			y: 8,
+    			w: 1,
+    			h: 2,
     			index: 9,
     			move: 10,
     			getSymbol: 11,
@@ -6265,6 +6323,22 @@ var app = (function () {
     	}
 
     	set y(value) {
+    		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get w() {
+    		throw new Error("<Card>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set w(value) {
+    		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get h() {
+    		throw new Error("<Card>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set h(value) {
     		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -6325,17 +6399,21 @@ var app = (function () {
     function create_fragment$1(ctx) {
     	let g;
     	let text_1;
-    	let t;
+    	let t0_value = (/*remaining*/ ctx[2] < 10 ? "0" : "") + "";
+    	let t0;
+    	let t1;
+    	let text_1_fill_value;
     	let g_transform_value;
 
     	const block = {
     		c: function create() {
     			g = svg_element("g");
     			text_1 = svg_element("text");
-    			t = text(/*remaining*/ ctx[2]);
+    			t0 = text(t0_value);
+    			t1 = text(/*remaining*/ ctx[2]);
     			attr_dev(text_1, "x", "0");
     			attr_dev(text_1, "y", "0");
-    			attr_dev(text_1, "fill", "white");
+    			attr_dev(text_1, "fill", text_1_fill_value = /*remaining*/ ctx[2] < 11 ? "red" : "white");
     			attr_dev(text_1, "stroke", "black");
     			attr_dev(text_1, "stroke-width", "2");
     			attr_dev(text_1, "font-size", "60");
@@ -6352,10 +6430,16 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, g, anchor);
     			append_dev(g, text_1);
-    			append_dev(text_1, t);
+    			append_dev(text_1, t0);
+    			append_dev(text_1, t1);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*remaining*/ 4) set_data_dev(t, /*remaining*/ ctx[2]);
+    			if (dirty & /*remaining*/ 4 && t0_value !== (t0_value = (/*remaining*/ ctx[2] < 10 ? "0" : "") + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*remaining*/ 4) set_data_dev(t1, /*remaining*/ ctx[2]);
+
+    			if (dirty & /*remaining*/ 4 && text_1_fill_value !== (text_1_fill_value = /*remaining*/ ctx[2] < 11 ? "red" : "white")) {
+    				attr_dev(text_1, "fill", text_1_fill_value);
+    			}
 
     			if (dirty & /*x, y*/ 3 && g_transform_value !== (g_transform_value = "translate(" + /*x*/ ctx[0] + ", " + /*y*/ ctx[1] + ")")) {
     				attr_dev(g, "transform", g_transform_value);
@@ -6547,24 +6631,26 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (157:2) {#each symbols as symbol, index}
+    // (158:2) {#each symbols as symbol, index}
     function create_each_block(ctx) {
     	let card;
     	let index = /*index*/ ctx[40];
     	let current;
-    	const assign_card = () => /*card_binding*/ ctx[17](card, index);
-    	const unassign_card = () => /*card_binding*/ ctx[17](null, index);
+    	const assign_card = () => /*card_binding*/ ctx[19](card, index);
+    	const unassign_card = () => /*card_binding*/ ctx[19](null, index);
 
     	let card_props = {
     		x: 25 + /*index*/ ctx[40] * .5,
-    		y: /*h*/ ctx[10] / 2 - /*index*/ ctx[40] * .5,
+    		y: /*h*/ ctx[12] / 2 - /*index*/ ctx[40] * .5,
+    		w: /*cardWidth*/ ctx[0],
+    		h: /*cardHeight*/ ctx[1],
     		index: /*index*/ ctx[40],
     		symbol: /*symbol*/ ctx[38]
     	};
 
     	card = new Card({ props: card_props, $$inline: true });
     	assign_card();
-    	card.$on("cardClick", /*handleCardClick*/ ctx[12]);
+    	card.$on("cardClick", /*handleCardClick*/ ctx[14]);
 
     	const block = {
     		c: function create() {
@@ -6582,6 +6668,8 @@ var app = (function () {
     			}
 
     			const card_changes = {};
+    			if (dirty[0] & /*cardWidth*/ 1) card_changes.w = /*cardWidth*/ ctx[0];
+    			if (dirty[0] & /*cardHeight*/ 2) card_changes.h = /*cardHeight*/ ctx[1];
     			card.$set(card_changes);
     		},
     		i: function intro(local) {
@@ -6603,7 +6691,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(157:2) {#each symbols as symbol, index}",
+    		source: "(158:2) {#each symbols as symbol, index}",
     		ctx
     	});
 
@@ -6629,7 +6717,7 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	let each_value = /*symbols*/ ctx[11];
+    	let each_value = /*symbols*/ ctx[13];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -6643,7 +6731,7 @@ var app = (function () {
 
     	let timer_1_props = { x: "450", y: "35", duration: "60" };
     	timer_1 = new Timer({ props: timer_1_props, $$inline: true });
-    	/*timer_1_binding*/ ctx[18](timer_1);
+    	/*timer_1_binding*/ ctx[20](timer_1);
 
     	const block = {
     		c: function create() {
@@ -6651,10 +6739,10 @@ var app = (function () {
     			div0 = element("div");
     			t0 = text("MATCHES: ");
     			span0 = element("span");
-    			t1 = text(/*matches*/ ctx[4]);
+    			t1 = text(/*matches*/ ctx[6]);
     			t2 = text(" WRONG GUESSES: ");
     			span1 = element("span");
-    			t3 = text(/*noMatches*/ ctx[5]);
+    			t3 = text(/*noMatches*/ ctx[7]);
     			t4 = space();
     			svg_1 = svg_element("svg");
     			g = svg_element("g");
@@ -6669,21 +6757,21 @@ var app = (function () {
     			div1 = element("div");
     			div1.textContent = "START";
     			attr_dev(span0, "class", "svelte-7z3ll9");
-    			add_location(span0, file, 153, 34, 3100);
+    			add_location(span0, file, 154, 34, 3116);
     			attr_dev(span1, "class", "svelte-7z3ll9");
-    			add_location(span1, file, 153, 72, 3138);
+    			add_location(span1, file, 154, 72, 3154);
     			attr_dev(div0, "class", "scorecard svelte-7z3ll9");
-    			add_location(div0, file, 153, 1, 3067);
-    			add_location(g, file, 155, 2, 3252);
-    			attr_dev(svg_1, "width", /*svgWidth*/ ctx[7]);
-    			attr_dev(svg_1, "height", /*svgHeight*/ ctx[8]);
-    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[9] + " " + /*h*/ ctx[10]);
+    			add_location(div0, file, 154, 1, 3083);
+    			add_location(g, file, 156, 2, 3268);
+    			attr_dev(svg_1, "width", /*svgWidth*/ ctx[9]);
+    			attr_dev(svg_1, "height", /*svgHeight*/ ctx[10]);
+    			attr_dev(svg_1, "viewBox", "0 0 " + /*w*/ ctx[11] + " " + /*h*/ ctx[12]);
     			attr_dev(svg_1, "class", "svelte-7z3ll9");
-    			add_location(svg_1, file, 154, 1, 3170);
+    			add_location(svg_1, file, 155, 1, 3186);
     			attr_dev(div1, "class", "deal-button svelte-7z3ll9");
-    			add_location(div1, file, 169, 1, 3560);
+    			add_location(div1, file, 172, 1, 3613);
     			attr_dev(main, "class", "svelte-7z3ll9");
-    			add_location(main, file, 152, 0, 3059);
+    			add_location(main, file, 153, 0, 3075);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6700,7 +6788,7 @@ var app = (function () {
     			append_dev(main, t4);
     			append_dev(main, svg_1);
     			append_dev(svg_1, g);
-    			/*g_binding*/ ctx[16](g);
+    			/*g_binding*/ ctx[18](g);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(svg_1, null);
@@ -6708,22 +6796,22 @@ var app = (function () {
 
     			append_dev(svg_1, each_1_anchor);
     			mount_component(timer_1, svg_1, null);
-    			/*svg_1_binding*/ ctx[19](svg_1);
+    			/*svg_1_binding*/ ctx[21](svg_1);
     			append_dev(main, t5);
     			append_dev(main, div1);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(div1, "click", /*handleStartClick*/ ctx[0], false, false, false);
+    				dispose = listen_dev(div1, "click", /*handleStartClick*/ ctx[2], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (!current || dirty[0] & /*matches*/ 16) set_data_dev(t1, /*matches*/ ctx[4]);
-    			if (!current || dirty[0] & /*noMatches*/ 32) set_data_dev(t3, /*noMatches*/ ctx[5]);
+    			if (!current || dirty[0] & /*matches*/ 64) set_data_dev(t1, /*matches*/ ctx[6]);
+    			if (!current || dirty[0] & /*noMatches*/ 128) set_data_dev(t3, /*noMatches*/ ctx[7]);
 
-    			if (dirty[0] & /*h, symbols, cardArray, handleCardClick*/ 7176) {
-    				each_value = /*symbols*/ ctx[11];
+    			if (dirty[0] & /*h, cardWidth, cardHeight, symbols, cardArray, handleCardClick*/ 28707) {
+    				each_value = /*symbols*/ ctx[13];
     				validate_each_argument(each_value);
     				let i;
 
@@ -6775,11 +6863,11 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			/*g_binding*/ ctx[16](null);
+    			/*g_binding*/ ctx[18](null);
     			destroy_each(each_blocks, detaching);
-    			/*timer_1_binding*/ ctx[18](null);
+    			/*timer_1_binding*/ ctx[20](null);
     			destroy_component(timer_1);
-    			/*svg_1_binding*/ ctx[19](null);
+    			/*svg_1_binding*/ ctx[21](null);
     			mounted = false;
     			dispose();
     		}
@@ -6809,11 +6897,11 @@ var app = (function () {
     	let w = 500;
 
     	let h = 500;
-    	let cardWidth = 50;
-    	let cardHeight = 50;
     	let gap = 10;
     	let { rows } = $$props;
     	let { columns } = $$props;
+    	let { cardWidth = 60 } = $$props;
+    	let { cardHeight = 60 } = $$props;
     	let rowWidth = columns * (cardWidth + gap) - gap;
     	let columnHeight = rows * (cardHeight + gap) - gap;
     	let totalCards = rows * columns;
@@ -6900,7 +6988,7 @@ var app = (function () {
     	}
 
     	function collectWinnings() {
-    		$$invalidate(4, matches++, matches);
+    		$$invalidate(6, matches++, matches);
 
     		selectedCards.forEach(card => {
     			card.lock();
@@ -6910,7 +6998,7 @@ var app = (function () {
     	}
 
     	function putEmBack() {
-    		$$invalidate(5, noMatches++, noMatches);
+    		$$invalidate(7, noMatches++, noMatches);
 
     		setTimeout(
     			() => {
@@ -6944,7 +7032,7 @@ var app = (function () {
     		}
     	}
 
-    	const writable_props = ['rows', 'columns'];
+    	const writable_props = ['rows', 'columns', 'cardWidth', 'cardHeight'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
@@ -6953,34 +7041,36 @@ var app = (function () {
     	function g_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			cardHolder = $$value;
-    			$$invalidate(2, cardHolder);
+    			$$invalidate(4, cardHolder);
     		});
     	}
 
     	function card_binding($$value, index) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			cardArray[index] = $$value;
-    			$$invalidate(3, cardArray);
+    			$$invalidate(5, cardArray);
     		});
     	}
 
     	function timer_1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			timer = $$value;
-    			$$invalidate(6, timer);
+    			$$invalidate(8, timer);
     		});
     	}
 
     	function svg_1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			svg = $$value;
-    			$$invalidate(1, svg);
+    			$$invalidate(3, svg);
     		});
     	}
 
     	$$self.$$set = $$props => {
-    		if ('rows' in $$props) $$invalidate(13, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(14, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(15, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(16, columns = $$props.columns);
+    		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
+    		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
     	};
 
     	$$self.$capture_state = () => ({
@@ -6992,11 +7082,11 @@ var app = (function () {
     		svgHeight,
     		w,
     		h,
-    		cardWidth,
-    		cardHeight,
     		gap,
     		rows,
     		columns,
+    		cardWidth,
+    		cardHeight,
     		rowWidth,
     		columnHeight,
     		totalCards,
@@ -7023,28 +7113,28 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('svg' in $$props) $$invalidate(1, svg = $$props.svg);
-    		if ('cardHolder' in $$props) $$invalidate(2, cardHolder = $$props.cardHolder);
-    		if ('svgWidth' in $$props) $$invalidate(7, svgWidth = $$props.svgWidth);
-    		if ('svgHeight' in $$props) $$invalidate(8, svgHeight = $$props.svgHeight);
-    		if ('w' in $$props) $$invalidate(9, w = $$props.w);
-    		if ('h' in $$props) $$invalidate(10, h = $$props.h);
-    		if ('cardWidth' in $$props) cardWidth = $$props.cardWidth;
-    		if ('cardHeight' in $$props) cardHeight = $$props.cardHeight;
+    		if ('svg' in $$props) $$invalidate(3, svg = $$props.svg);
+    		if ('cardHolder' in $$props) $$invalidate(4, cardHolder = $$props.cardHolder);
+    		if ('svgWidth' in $$props) $$invalidate(9, svgWidth = $$props.svgWidth);
+    		if ('svgHeight' in $$props) $$invalidate(10, svgHeight = $$props.svgHeight);
+    		if ('w' in $$props) $$invalidate(11, w = $$props.w);
+    		if ('h' in $$props) $$invalidate(12, h = $$props.h);
     		if ('gap' in $$props) gap = $$props.gap;
-    		if ('rows' in $$props) $$invalidate(13, rows = $$props.rows);
-    		if ('columns' in $$props) $$invalidate(14, columns = $$props.columns);
+    		if ('rows' in $$props) $$invalidate(15, rows = $$props.rows);
+    		if ('columns' in $$props) $$invalidate(16, columns = $$props.columns);
+    		if ('cardWidth' in $$props) $$invalidate(0, cardWidth = $$props.cardWidth);
+    		if ('cardHeight' in $$props) $$invalidate(1, cardHeight = $$props.cardHeight);
     		if ('rowWidth' in $$props) rowWidth = $$props.rowWidth;
     		if ('columnHeight' in $$props) columnHeight = $$props.columnHeight;
     		if ('totalCards' in $$props) totalCards = $$props.totalCards;
     		if ('str' in $$props) str = $$props.str;
-    		if ('symbols' in $$props) $$invalidate(11, symbols = $$props.symbols);
-    		if ('cardArray' in $$props) $$invalidate(3, cardArray = $$props.cardArray);
+    		if ('symbols' in $$props) $$invalidate(13, symbols = $$props.symbols);
+    		if ('cardArray' in $$props) $$invalidate(5, cardArray = $$props.cardArray);
     		if ('selectedCards' in $$props) selectedCards = $$props.selectedCards;
-    		if ('matches' in $$props) $$invalidate(4, matches = $$props.matches);
-    		if ('noMatches' in $$props) $$invalidate(5, noMatches = $$props.noMatches);
+    		if ('matches' in $$props) $$invalidate(6, matches = $$props.matches);
+    		if ('noMatches' in $$props) $$invalidate(7, noMatches = $$props.noMatches);
     		if ('started' in $$props) started = $$props.started;
-    		if ('timer' in $$props) $$invalidate(6, timer = $$props.timer);
+    		if ('timer' in $$props) $$invalidate(8, timer = $$props.timer);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -7052,6 +7142,8 @@ var app = (function () {
     	}
 
     	return [
+    		cardWidth,
+    		cardHeight,
     		handleStartClick,
     		svg,
     		cardHolder,
@@ -7086,10 +7178,12 @@ var app = (function () {
     			create_fragment,
     			safe_not_equal,
     			{
-    				rows: 13,
-    				columns: 14,
-    				init: 15,
-    				handleStartClick: 0
+    				rows: 15,
+    				columns: 16,
+    				cardWidth: 0,
+    				cardHeight: 1,
+    				init: 17,
+    				handleStartClick: 2
     			},
     			null,
     			[-1, -1]
@@ -7105,11 +7199,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*rows*/ ctx[13] === undefined && !('rows' in props)) {
+    		if (/*rows*/ ctx[15] === undefined && !('rows' in props)) {
     			console_1.warn("<App> was created without expected prop 'rows'");
     		}
 
-    		if (/*columns*/ ctx[14] === undefined && !('columns' in props)) {
+    		if (/*columns*/ ctx[16] === undefined && !('columns' in props)) {
     			console_1.warn("<App> was created without expected prop 'columns'");
     		}
     	}
@@ -7130,8 +7224,24 @@ var app = (function () {
     		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
+    	get cardWidth() {
+    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set cardWidth(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get cardHeight() {
+    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set cardHeight(value) {
+    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
     	get init() {
-    		return this.$$.ctx[15];
+    		return this.$$.ctx[17];
     	}
 
     	set init(value) {
@@ -7139,7 +7249,7 @@ var app = (function () {
     	}
 
     	get handleStartClick() {
-    		return this.$$.ctx[0];
+    		return this.$$.ctx[2];
     	}
 
     	set handleStartClick(value) {
@@ -7151,7 +7261,9 @@ var app = (function () {
     	target: document.body,
     	props: {
     		rows: 4,
-    		columns: 4
+    		columns: 4,
+    		cardWidth: 60,
+    		cardHeight: 60
     	}
     });
 

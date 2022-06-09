@@ -4,7 +4,9 @@ const app = new App({
 	target: document.body,
 	props: {
 		rows: 4,
-		columns: 4
+		columns: 4,
+		cardWidth: 60,
+		cardHeight: 60
 	}
 });
 

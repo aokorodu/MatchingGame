@@ -9,11 +9,12 @@
 	// let svgHeight = "100%";
 	let w = 500;
 	let h = 500;
-	let cardWidth = 50;
-	let cardHeight = 50;
+	
 	let gap = 10;
 	export let rows;
 	export let columns;
+	export let cardWidth = 60;
+	export let cardHeight = 60;
 	let rowWidth = columns * (cardWidth + gap) - gap;
 	let columnHeight = rows * (cardHeight + gap) - gap;
 	let totalCards = rows * columns;
@@ -159,6 +160,8 @@
 				on:cardClick={handleCardClick}
 				x={(25) + (index * .5)}
 				y={(h/2) - (index * .5)}
+				w={cardWidth}
+				h={cardHeight}
 				{index}
 				bind:this={cardArray[index]}
 				{symbol}

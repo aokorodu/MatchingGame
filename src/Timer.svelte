@@ -36,12 +36,12 @@
   <text
     x="0"
     y="0"
-    fill="white"
+    fill={remaining < 11 ? "red" : "white"}
     stroke="black"
     stroke-width="2"
     font-size="60"
     font-weight="900"
     dominant-baseline="middle"
-    text-anchor="middle">{remaining}</text
+    text-anchor="middle">{remaining < 10 ? "0" : ""}{remaining}</text
   >
 </g>

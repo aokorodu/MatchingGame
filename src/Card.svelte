@@ -9,13 +9,13 @@
   export let symbol = "A";
   export let x;
   export let y;
+  export let w = 50;
+  export let h = 50;
   export let index;
   let position = {
     x: x,
     y: y,
   };
-  let w = 50;
-  let h = 50;
 
   let state = {
     showing: false,
