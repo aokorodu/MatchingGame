@@ -7583,8 +7583,8 @@ var app = (function () {
     	props: {
     		rows: 4,
     		columns: 4,
-    		cardWidth: 50,
-    		cardHeight: 50,
+    		cardWidth: 70,
+    		cardHeight: 70,
     		duration: 60
     	}
     });
